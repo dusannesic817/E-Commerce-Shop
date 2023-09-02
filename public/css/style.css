@@ -1,0 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.margin_cart{
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+
+.navbar_color{
+    background-color:#04f5ff	;
+}
+
+.navbar-text{
+    color:  #340040;
+    font-weight: bold;
+    /*font-family: sans-serif;*/
+}
+
+.navbar-text:hover{
+    color: #ffffff;
+    transition: .4s;
+}

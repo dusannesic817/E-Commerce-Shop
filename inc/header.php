@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.css" integrity="sha512-KOWhIs2d8WrPgR4lTaFgxI35LLOp5PRki/DxQvb7mlP29YZ5iJ5v8tiLWF7JLk5nDBlgPP1gHzw96cZ77oD7zQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>Header</title>
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
 
 </head>
 <body>
@@ -16,11 +16,11 @@
 <nav class="navbar navbar-expand-lg navbar_color">
   <div class="container-fluid">
   <a class="navbar-brand navbar-text" href="index.php">Premier
-      <img src="../public/images/logo1.png" alt="Logo" width="50" height="35" class="d-inline-block align-text-top">
+      <img src="public/images/logo1.png" alt="Logo" width="50" height="35" class="d-inline-block align-text-top">
         League 
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler navbar-text" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon navbar-text"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">

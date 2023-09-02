@@ -23,3 +23,20 @@
     color: #ffffff;
     transition: .4s;
 }
+
+
+.margine_bottom{
+    margin-bottom:7rem;
+    text-align: center;
+    color:#340040;
+}
+
+.shadow{
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 92%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5px;
+}

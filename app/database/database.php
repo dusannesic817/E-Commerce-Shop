@@ -47,11 +47,20 @@ $sql = 'CREATE TABLE IF NOT EXISTS `jerseys`(
         `club_id` INT UNSIGNED NOT NULL UNIQUE,
         FOREIGN KEY(club_id) REFERENCES clubs(id) 
         ) ENGINE = InnoDB;';
-        
+
+$sql = 'CREATE TABLE IF NOT EXISTS `souvenirs`(
+        `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        `name` VARCHAR(255) NOT NULL,
+        `type` VARCHAR(255),
+        `price` DECIMAL(10,2),
+        `image` VARCHAR(255),
+        `club_id` INT UNSIGNED NOT NULL UNIQUE,
+        FOREIGN KEY(club_id) REFERENCES clubs(id)
+        ) ENGINE = InnoDB;';
 
 
 if($conn->multi_query($sql)){
-  echo "<p>Tables created successfull</p>";
+  echo "<p>Tables created successfully</p>";
 }else{
   header("location:index.php");
 }

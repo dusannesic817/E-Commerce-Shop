@@ -24,7 +24,7 @@
         <h1 class="margine_bottom">Premier League Shop</h1>
         <div class="row gy-4">
             <?php
-            $teams = [
+           /* $teams = [
                      ["name"=>"Arsenal", "image"=>"arsenal.png"],
                      ["name"=>"Aston Villa", "image"=>"aston_vila.png"],
                      ["name"=>"Bournemouth", "image"=>"bornemouth.png"],
@@ -55,7 +55,7 @@
                 echo '</div>';
                 echo '</div>';
                 echo '</div>';
-            }
+            }*/
             ?>
         </div>
     </div>
@@ -64,3 +64,5 @@
 
 
 </html>
+
+

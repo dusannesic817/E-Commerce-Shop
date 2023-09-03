@@ -40,4 +40,31 @@
     background-color: rgba(255, 255, 255, 0.5);
     padding: 5px;
 }
+<<<<<<< HEAD
 
+=======
+.footer{
+    background-color: #340040;
+    margin-top: 40px;
+}
+.footer img {
+    max-width: 20%;
+    height: auto;
+    margin: 10px auto;
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-end;
+}
+
+a{
+    text-decoration: none;
+}
+a:hover{
+    color: #05F26C;
+    transition: .4s;
+}
+.icons{
+    margin-left: 25px;
+    color: #05F26C;
+}
+>>>>>>> 86b01233fae10f3982987cd187f29fc443484422

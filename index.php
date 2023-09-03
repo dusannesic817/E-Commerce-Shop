@@ -1,7 +1,7 @@
 <?php
 
     require_once "inc/header.php";
-    require_once "app/config/config.php";
+    require_once "app/config/config.php";    
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
 
@@ -29,7 +29,12 @@
 
 
             }
+<<<<<<< HEAD
          }
+=======
+        }
+
+>>>>>>> 86b01233fae10f3982987cd187f29fc443484422
 
     }
   
@@ -50,32 +55,31 @@
     <link rel="stylesheet" href="public/css/style.css">
     <title>PL Shop</title>
 </head>
+
 <body>
     <div class="container mt-5">
         <h1 class="margine_bottom">Premier League Shop</h1>
         <div class="row gy-4">
-        <?php
+            <?php
                     foreach($niz as $key=> $value){
                 ?>
             <div class="col-md-3">
-                <div class="card" style="postion: relative;" >
-                    <img src="public/images/<?php echo $value ?>" class="card-img" alt="...">     
+                <div class="card" style="postion: relative;">
+                    <img src="public/images/<?php echo $value ?>" class="card-img" alt="...">
                     <div class="card-img-overlay">
-                        <div class="card-title shadow" > <h5><?php echo $key?></h5> 
-                    </div>
-                    </div>
+                        <div class="card-title shadow">
+                            <h5><?php echo $key?></h5>
+                        </div>
                     </div>
                 </div>
+            </div>
             <?php
                 }
                 
             ?>
-        </div>        
-    </div>     
+        </div>
+    </div>
 </body>
-
-
+<?php require_once "inc/footer.php";?>
 
 </html>
-
-

@@ -9,8 +9,13 @@
     `image` VARCHAR(255) ,
     PRIMARY KEY(`id`)
 ) ENGINE = InnoDB;";
+<<<<<<< HEAD
 
 /*$sql='
+=======
+/*
+$sql='
+>>>>>>> 86b01233fae10f3982987cd187f29fc443484422
 INSERT INTO `clubs`(`id`, `name`, `image`)
 VALUES
 ("","Arsenal","arsenal.png"),
@@ -34,9 +39,25 @@ VALUES
 ("","Wolves", "wolves.png"),
 ("","West Ham", "west_ham.png");
 
+<<<<<<< HEAD
 ';*/
+=======
+';
+*/
+>>>>>>> 86b01233fae10f3982987cd187f29fc443484422
 
+$sql = 'CREATE TABLE IF NOT EXISTS `jerseys`(
+        `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        `name` VARCHAR(255) NOT NULL,
+        `type` VARCHAR(255),
+        `year` INT,
+        `price` DECIMAL(10, 2),
+        `image` VARCHAR(255),
+        `club_id` INT UNSIGNED NOT NULL UNIQUE,
+        FOREIGN KEY(club_id) REFERENCES clubs(id) 
+        ) ENGINE = InnoDB;';
 
+<<<<<<< HEAD
 $sql="CREATE TABLE IF NOT EXISTS `users`(
 
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -58,10 +79,21 @@ $sql="CREATE TABLE IF NOT EXISTS `users`(
 /*$sql.="ALTER TABLE `users` 
 ADD `zip` VARCHAR(255) NOT NULL;
 ";*/
+=======
+$sql = 'CREATE TABLE IF NOT EXISTS `souvenirs`(
+        `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        `name` VARCHAR(255) NOT NULL,
+        `type` VARCHAR(255),
+        `price` DECIMAL(10,2),
+        `image` VARCHAR(255),
+        `club_id` INT UNSIGNED NOT NULL UNIQUE,
+        FOREIGN KEY(club_id) REFERENCES clubs(id)
+        ) ENGINE = InnoDB;';
+>>>>>>> 86b01233fae10f3982987cd187f29fc443484422
 
 
 if($conn->multi_query($sql)){
-  echo "<p>Tables created successfull</p>";
+  echo "<p>Tables created successfully</p>";
 }else{
   header("location:index.php");
 }

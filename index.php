@@ -1,6 +1,34 @@
 <?php
 
     require_once "inc/header.php";
+    require_once "app/config/config.php";
+
+    if($_SERVER["REQUEST_METHOD"]=="GET"){
+
+        $sql=" SELECT 
+        `id`, `name`,`image`
+        FROM `clubs`";
+    
+        $rezultat=$conn->query($sql);
+        $images=array();
+        $names=array();
+
+         if($rezultat->num_rows>0){
+
+            while($row=$rezultat->fetch_assoc()){
+                $img=$row["image"];
+                $images[]=$img;
+                
+                
+                $name=$row["name"];
+                $names[]=$name;
+            }
+        }
+
+        
+
+    }
+  
 
 ?>
 

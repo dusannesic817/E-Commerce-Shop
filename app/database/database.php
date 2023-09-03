@@ -10,7 +10,7 @@
     PRIMARY KEY(`id`)
 ) ENGINE = InnoDB;";
 
-$sql='
+/*$sql='
 INSERT INTO `clubs`(`id`, `name`, `image`)
 VALUES
 ("","Arsenal","arsenal.png"),
@@ -34,10 +34,30 @@ VALUES
 ("","Wolves", "wolves.png"),
 ("","West Ham", "west_ham.png");
 
-';
+';*/
 
 
+$sql="CREATE TABLE IF NOT EXISTS `users`(
 
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(255) NOT NULL,
+  `last_name` VARCHAR(255) NOT NULL,
+  `username` VARCHAR (255) UNIQUE NOT NULL,
+  `password` VARCHAR (255) NOT NULL,
+  `email` VARCHAR(255) UNIQUE NOT NULL,
+  `country` VARCHAR(255) NOT NULL,
+  `zip`  VARCHAR(255),
+  `number` VARCHAR(255) NOT NULL,
+  `adress` VARCHAR(255) NOT NULL,
+  `is_admin` BIT DEFAULT 0,
+  `crated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(`id`)
+
+) ENGINE= InnoDB;";
+
+/*$sql.="ALTER TABLE `users` 
+ADD `zip` VARCHAR(255) NOT NULL;
+";*/
 
 
 if($conn->multi_query($sql)){

@@ -9,7 +9,7 @@
     `image` VARCHAR(255) ,
     PRIMARY KEY(`id`)
 ) ENGINE = InnoDB;";
-
+/*
 $sql='
 INSERT INTO `clubs`(`id`, `name`, `image`)
 VALUES
@@ -35,7 +35,7 @@ VALUES
 ("","West Ham", "west_ham.png");
 
 ';
-
+*/
 
 
 

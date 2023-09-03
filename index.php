@@ -1,9 +1,7 @@
 <?php
 
     require_once "inc/header.php";
-    require_once "inc/footer.php";
-    require_once "app/config/config.php";
-    
+    require_once "app/config/config.php";    
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
 
@@ -78,7 +76,6 @@
         </div>
     </div>
 </body>
-
-
+<?php require_once "inc/footer.php";?>
 
 </html>

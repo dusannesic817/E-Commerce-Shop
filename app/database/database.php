@@ -20,7 +20,7 @@ VALUES
 ("","Brighton", "brighton.png"),
 ("","Burnley", "burnley.png"),
 ("","Chelsea", "chelsea.png"),
-("","Crystal Palas", "crystal_palas"),
+("","Crystal Palas", "crystal_palas.png"),
 ("","Everton", "everton.png"),
 ("","Fulham", "fulham.png"),
 ("","Liverpool", "liverpool.png"),
@@ -29,7 +29,7 @@ VALUES
 ("","Machester United", "man_utd.png"),
 ("","Newcastle", "newcastle.png"),
 ("","Nottingham Forrest", "nottingham_forest.png"),
-("","Sheffield United", "sheffield_united"),
+("","Sheffield United", "sheffield_united.png"),
 ("","Totenham", "totenham.png"),
 ("","Wolves", "wolves.png"),
 ("","West Ham", "west_ham.png");

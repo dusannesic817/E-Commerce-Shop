@@ -24,10 +24,8 @@
                 
                 $name=$row["name"];
                 $names[]=$name;
-
-
+                
                 $niz = array_combine($names, $images);
-
 
 
             }
@@ -54,19 +52,26 @@
     <link rel="stylesheet" href="public/css/style.css">
     <title>PL Shop</title>
 </head>
-
 <body>
     <div class="container mt-5">
         <h1 class="margine_bottom">Premier League Shop</h1>
         <div class="row gy-4">
-            <div class="col-md-4">
-            <div class="card" style="postion: relative;" >
-                <img src="public/images/liverpool.png" class="card-img" alt="...">
-                <div class="card-img-overlay">
-                    <div class="card-title shadow" > <h5>Liverpool</h5> </div>
+        <?php
+                    foreach($niz as $key=> $value){
+                ?>
+            <div class="col-md-3">
+                <div class="card" style="postion: relative;" >
+                    <img src="public/images/<?php echo $value ?>" class="card-img" alt="...">     
+                    <div class="card-img-overlay">
+                        <div class="card-title shadow" > <h5><?php echo $key?></h5> 
+                    </div>
+                    </div>
+                    </div>
                 </div>
-                </div>
-            </div>
+            <?php
+                }
+                
+            ?>
         </div>        
     </div>     
 </body>

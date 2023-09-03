@@ -31,6 +31,10 @@
     color:#340040;
 }
 
+.margin_top{
+    margin-top:  7rem;
+}
+
 .shadow{
     position: absolute;
     text-align: center;
@@ -40,9 +44,7 @@
     background-color: rgba(255, 255, 255, 0.5);
     padding: 5px;
 }
-<<<<<<< HEAD
 
-=======
 .footer{
     background-color: #340040;
     margin-top: 40px;
@@ -67,4 +69,3 @@ a:hover{
     margin-left: 25px;
     color: #05F26C;
 }
->>>>>>> 86b01233fae10f3982987cd187f29fc443484422

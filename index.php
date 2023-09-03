@@ -53,7 +53,7 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container margin_top">
         <h1 class="margine_bottom">Premier League Shop</h1>
         <div class="row gy-4">
             <?php

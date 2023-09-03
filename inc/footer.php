@@ -18,16 +18,16 @@
 </head>
 
 <body>
-    <footer class="text-light footer">
+    <footer class="text-light footer" style="margin-top:7rem;">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4 mt-5">
                     <h5>Contact Us</h5>
                     <h6>Email: </h6>
                     <p>dusannesic28@gmail.com</p>
                     <p>filipnikolic96vr@gmail.com</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mt-5">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="#">About Us</a></li>
@@ -35,7 +35,7 @@
                         <li><a href="#">Search</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mt-5">
                     <h5>Connect</h5>
                     <p>Follow us on social media:</p>
                     <a href="#"><i class="bi bi-facebook fa-2x icons"></i></a>
@@ -44,11 +44,11 @@
                 </div>
             </div>
             <div>
-                <img src="../public/images/logo_pl.png" alt="PL logo">
+                <img src="public/images/logo_pl.png" alt="PL logo">
             </div>
             <div class="row mt-3">
                 <div class="col-12 text-center">
-                    <p>&copy; <?php echo date("Y"); ?> Premier League Shop. All rights reserved to Dule i Fica.</p>
+                    <p>&copy; <?php echo date("Y"); ?> Premier League Shop. All rights reserved to Dusan and Filip.</p>
                 </div>
             </div>
             

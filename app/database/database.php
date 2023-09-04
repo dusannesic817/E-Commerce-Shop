@@ -59,6 +59,34 @@ $sql = 'CREATE TABLE IF NOT EXISTS `souvenirs`(
         ) ENGINE = InnoDB;';
 
 
+
+$sql= "CREATE TABLE IF NOT EXISTS `countries`(
+        `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        `country` VARCHAR(255),
+        `zip` VARCHAR(255)
+)ENGINE = InnoDB;
+
+";
+
+$sql=" CREATE TABLE IF NOT EXISTS `users`(
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `first_name` VARCHAR(255) NOT NULL,
+  `last_name` VARCHAR(255) NOT NULL,
+  `username` VARCHAR(255) NOT NULL UNIQUE,
+  `email` VARCHAR(255) NOT NULL UNIQUE,
+  `password` VARCHAR(255) NOT NULL,
+  `number` VARCHAR(255) NOT NULL,
+  `adress` VARCHAR(255) NOT NULL,
+  `is_admin` BIT DEFAULT 0,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `coutry_id` INT UNSIGNED NOT NULL UNIQUE,
+  FOREIGN KEY(`coutry_id`) REFERENCES `countries`(`id`)
+  
+
+)ENGINE = InnoDB;";
+
+
+
 if($conn->multi_query($sql)){
   echo "<p>Tables created successfully</p>";
 }else{

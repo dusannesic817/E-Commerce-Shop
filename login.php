@@ -54,6 +54,10 @@ require_once "app/config/config.php";
 </body>
 </html>
 
+<?php
+
+    require_once "inc/footer.php";
+    ?>
 
 <!--
 <!DOCTYPE html>

@@ -5,7 +5,95 @@ require_once "app/config/config.php";
 
 
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Registration Form</title>
+    
+    <!-- MDB CSS (Include the path to your MDB CSS file) -->
+    <link rel="stylesheet" href="path-to-your-mdb-css/mdb.min.css">
+    
+    <!-- Font Awesome Icons (if not already included in MDB) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
 
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Registration Form</h5>
+                    <form action="#" method="POST">
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="retype" class="form-label">Retype Password</label>
+                            <input type="password" class="form-control" id="retype" name="retype" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <select class="form-select" id="country" name="country" required>
+                                <option value="" disabled selected>Select your country</option>
+                                <option value="1">Country 1</option>
+                                <option value="2">Country 2</option>
+                                <option value="3">Country 3</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="zip" class="form-label">ZIP Code</label>
+                            <input type="text" class="form-control" id="zip" name="zip">
+                        </div>
+                        <div class="mb-3">
+                            <label for="number" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="number" name="number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" name="address">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MDB JavaScript (Include the path to your MDB JavaScript file) -->
+<script src="path-to-your-mdb-js/mdb.min.js"></script>
+
+</body>
+</html>
+
+<?php
+
+    require_once "inc/footer.php";
+    ?>
+
+<!--
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,19 +101,19 @@ require_once "app/config/config.php";
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Material Design for Bootstrap</title>
-    <!-- MDB icon -->
+    
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
-    <!-- Font Awesome -->
+    
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <!-- Google Fonts Roboto -->
+    
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
     />
-    <!-- MDB -->
+    
     <link rel="stylesheet" href="bootsrap/css/mdb.min.css" />
     <link rel="stylesheet" href="public/css/style.css" />
   </head>
@@ -74,7 +162,7 @@ require_once "app/config/config.php";
                             
                         </div>
 
-                        <!-- Password input -->
+                        
                         <div class="mb-4">
                             <input type="password" class="form-control rounded" name="password" id ="password" value="" placeholder="Password" aria-label="Password"/>
                             
@@ -129,6 +217,7 @@ require_once "app/config/config.php";
 </section>
   </body>
 </html>
+-->
 
 
 <!--

@@ -1,3 +1,13 @@
+<?php
+require_once "app/config/config.php";
+require_once "app/classes/user.php";
+
+$user=new User();
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,12 +37,26 @@
         <li class="nav-item">
           <a class="nav-link navbar-text" aria-current="page" href="cart.php"><i class="bi bi-bag-fill margin_cart"></i> Cart</a>
         </li>
+        <?php
+          if(!$user->isLoged()){
+
+          
+        ?>
         <li class="nav-item">
           <a class="nav-link navbar-text" href="login.php"><i class="bi bi-person-fill margin_cart"></i> Login</a>
         </li>
         <li class="nav-item">
           <a class="nav-link navbar-text " href="register.php"><i class="bi bi-person-fill-gear margin_cart"></i> Register</a>
         </li>
+        <?php
+          }else{
+        ?>
+          <li class="nav-item">
+          <a class="nav-link navbar-text " href="logout.php"><i class="bi bi-person-fill-gear margin_cart"></i> Log Out</a>
+        </li>
+          <?php
+          }
+          ?>
       </ul>
     </div>
   </div>

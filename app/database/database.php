@@ -44,7 +44,7 @@ $sql = 'CREATE TABLE IF NOT EXISTS `jerseys`(
         `year` INT,
         `price` DECIMAL(10, 2),
         `image` VARCHAR(255),
-        `club_id` INT UNSIGNED NOT NULL UNIQUE,
+        `club_id` INT UNSIGNED NOT NULL,
         FOREIGN KEY(club_id) REFERENCES clubs(id) 
         ) ENGINE = InnoDB;';
 
@@ -54,7 +54,7 @@ $sql = 'CREATE TABLE IF NOT EXISTS `souvenirs`(
         `type` VARCHAR(255),
         `price` DECIMAL(10,2),
         `image` VARCHAR(255),
-        `club_id` INT UNSIGNED NOT NULL UNIQUE,
+        `club_id` INT UNSIGNED NOT NULL,
         FOREIGN KEY(club_id) REFERENCES clubs(id)
         ) ENGINE = InnoDB;';
 
@@ -79,12 +79,47 @@ $sql=" CREATE TABLE IF NOT EXISTS `users`(
   `adress` VARCHAR(255) NOT NULL,
   `is_admin` BIT DEFAULT 0,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `coutry_id` INT UNSIGNED NOT NULL UNIQUE,
+  `coutry_id` INT UNSIGNED NOT NULL,
   FOREIGN KEY(`coutry_id`) REFERENCES `countries`(`id`)
   
 
 )ENGINE = InnoDB;";
 
+
+
+
+$sql = 'CREATE TABLE IF NOT EXISTS `souvenirs`(
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `type` VARCHAR(255),
+  `price` DECIMAL(10,2),
+  `image` VARCHAR(255),
+  `club_id` INT UNSIGNED NOT NULL,
+  FOREIGN KEY(club_id) REFERENCES clubs(id)
+  ) ENGINE = InnoDB;';
+
+$sql = 'CREATE TABLE IF NOT EXISTS `jerseys`(
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `type` VARCHAR(255),
+  `year` INT,
+  `price` DECIMAL(10, 2),
+  `image` VARCHAR(255),
+  `club_id` INT UNSIGNED NOT NULL,
+  FOREIGN KEY(club_id) REFERENCES clubs(id) 
+  ) ENGINE = InnoDB;';
+
+/*
+$sql='
+INSERT INTO `countries`(`id`, `country`, `zip`)
+VALUES
+("","Serbia", "+381"),
+("","France", "+333"),
+("","Bosnia", "+334"),
+("","Montenegro", "+383")
+
+
+';*/
 
 
 if($conn->multi_query($sql)){

@@ -1,7 +1,20 @@
 <?php
 
     require_once "inc/header.php";
-    require_once "app/config/config.php";    
+    require_once "app/config/config.php";
+    require_once "app/classes/user.php";
+
+   
+    $porukaTekst = "";
+    
+    if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])) {
+       
+        if (isset($_SESSION["message"]["text"])) {
+            $porukaTekst = $_SESSION["message"]["text"];
+        }
+        unset($_SESSION["message"]);
+    }
+
 
     if($_SERVER["REQUEST_METHOD"]=="GET"){
 
@@ -13,28 +26,22 @@
         $images=array();
         $names=array();
 
-        
-
          if($rezultat->num_rows>0){
 
             while($row=$rezultat->fetch_assoc()){
                 $img=$row["image"];
                 $images[]=$img;
                 
-                
                 $name=$row["name"];
                 $names[]=$name;
                 
                 $niz = array_combine($names, $images);
 
-
             }
         }
 
-
     }
   
-
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +58,7 @@
     <link rel="stylesheet" href="public/css/style.css">
     <title>PL Shop</title>
 </head>
-
+<p><?php echo $porukaTekst?></p>
 <body>
     <div class="container margin_top">
         <h1 class="margine_bottom">Premier League Shop</h1>

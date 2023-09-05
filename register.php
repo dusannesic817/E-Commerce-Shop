@@ -2,6 +2,40 @@
 
 require_once "inc/header.php";
 require_once "app/config/config.php";
+require_once "app/classes/User.php";
+
+$zip_code="";
+    if($_SERVER["REQUEST_METHOD"]== "POST"){
+
+        $first_name= $conn->real_escape_string($_POST["first_name"]);
+        $last_name= $conn->real_escape_string($_POST["last_name"]);
+        $username= $conn->real_escape_string($_POST["username"]);
+        $email= $conn->real_escape_string($_POST["email"]);
+        $password= $conn->real_escape_string($_POST["password"]);
+        //$retype= $conn->real_escape_string($_POST["retype"]);
+        $country_id=$conn->real_escape_string($_POST["country"]);;
+        $number = $conn->real_escape_string($_POST["number"]);
+        $adress = $conn->real_escape_string($_POST["address"]);
+        
+
+        $user=new User();
+
+        $create= $user->createUser($first_name, $last_name,$username,$email,$password,$number,$adress,$country_id);
+
+        if($create){
+            $_SESSION["message"]["type"]= "success"; 
+            $_SESSION["message"]["text"]= "Successfully registered account"; 
+            header("Location: index.php");
+            exit();
+        }else{
+            $_SESSION["message"]["type"]= "danger"; 
+            $_SESSION["message"]["text"]= "Unsuccessfully registered account";
+            header("Location: register.php");
+            exit();
+        }
+
+        
+    }
 
 
 ?>
@@ -47,23 +81,43 @@ require_once "app/config/config.php";
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
+                        <!--
                         <div class="mb-3">
                             <label for="retype" class="form-label">Retype Password</label>
                             <input type="password" class="form-control" id="retype" name="retype" required>
-                        </div>
+                        </div>-->
                         <div class="mb-3">
+                     
                             <label for="country" class="form-label">Country</label>
                             <select class="form-select" id="country" name="country" required>
                                 <option value="" disabled selected>Select your country</option>
-                                <option value="1">Country 1</option>
-                                <option value="2">Country 2</option>
-                                <option value="3">Country 3</option>
+
+                                <?php
+                                    $sql="SELECT * FROM `countries`";
+                                    $run=$conn->query($sql);
+
+                                    $row=$run->fetch_all(MYSQLI_ASSOC);
+
+                                    var_dump($row);
+
+
+                                    foreach($row as $value){
+
+                                    
+                                    
+                                ?>
+                                <option value="<?php echo $value['id']?>"> <?php echo $value['country']?></option>
+                                
+                                <?php
+                                }
+                                ?>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="zip" class="form-label">ZIP Code</label>
-                            <input type="text" class="form-control" id="zip" name="zip">
+                            <input type="text" class="form-control" id="zip" name="zip" value="<?php echo $zip_code?>">
                         </div>
+                      
                         <div class="mb-3">
                             <label for="number" class="form-label">Phone Number</label>
                             <input type="text" class="form-control" id="number" name="number">

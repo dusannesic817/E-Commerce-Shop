@@ -37,28 +37,6 @@ VALUES
 ';
 */
 
-$sql = 'CREATE TABLE IF NOT EXISTS `jerseys`(
-        `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-        `name` VARCHAR(255) NOT NULL,
-        `type` VARCHAR(255),
-        `year` INT,
-        `price` DECIMAL(10, 2),
-        `image` VARCHAR(255),
-        `club_id` INT UNSIGNED NOT NULL,
-        FOREIGN KEY(club_id) REFERENCES clubs(id) 
-        ) ENGINE = InnoDB;';
-
-$sql = 'CREATE TABLE IF NOT EXISTS `souvenirs`(
-        `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-        `name` VARCHAR(255) NOT NULL,
-        `type` VARCHAR(255),
-        `price` DECIMAL(10,2),
-        `image` VARCHAR(255),
-        `club_id` INT UNSIGNED NOT NULL,
-        FOREIGN KEY(club_id) REFERENCES clubs(id)
-        ) ENGINE = InnoDB;';
-
-
 
 $sql= "CREATE TABLE IF NOT EXISTS `countries`(
         `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -86,28 +64,40 @@ $sql=" CREATE TABLE IF NOT EXISTS `users`(
 )ENGINE = InnoDB;";
 
 
+$sql = " CREATE TABLE IF NOT EXISTS `categories`
+(`id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+`name` VARCHAR(255)
+
+)ENGINE = InnoDB;
+";
 
 
-$sql = 'CREATE TABLE IF NOT EXISTS `souvenirs`(
-  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  `type` VARCHAR(255),
-  `price` DECIMAL(10,2),
-  `image` VARCHAR(255),
-  `club_id` INT UNSIGNED NOT NULL,
-  FOREIGN KEY(club_id) REFERENCES clubs(id)
-  ) ENGINE = InnoDB;';
-
-$sql = 'CREATE TABLE IF NOT EXISTS `jerseys`(
-  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  `type` VARCHAR(255),
-  `year` INT,
+$sql="CREATE TABLE IF NOT EXISTS `products`(
+  `id`  INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(255),
+  `description` VARCHAR(255),
   `price` DECIMAL(10, 2),
   `image` VARCHAR(255),
+  `kolicina` INT,
+  `size` CHAR(1),
   `club_id` INT UNSIGNED NOT NULL,
-  FOREIGN KEY(club_id) REFERENCES clubs(id) 
-  ) ENGINE = InnoDB;';
+  `category_id` INT UNSIGNED NOT NULL,
+  FOREIGN KEY(`club_id`) REFERENCES `clubs`(`id`),
+  FOREIGN KEY(`category_id`) REFERENCES `categories`(`id`)
+
+
+)ENGINE = InnoDB;
+
+";
+
+/*
+$sql="INSERT INTO `categories`(`id`,`name`)
+VALUES
+('','Jersey'),
+('', 'Souvenir')
+
+
+";*/
 
 /*
 $sql='

@@ -90,6 +90,22 @@ $sql="CREATE TABLE IF NOT EXISTS `products`(
 
 ";
 
+$sql="CREATE TABLE IF NOT EXISTS `size`(
+  `id`INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `size_name` CHAR(3)
+
+
+); ";
+/*
+$sql="INSERT INTO `size`(`id`,`size_name`)
+VALUES
+ ('','S'),
+ ('','M'),
+ ('','L'),
+ ('','XL'),
+ ('','XXL')
+";*/
+
 /*
 $sql="INSERT INTO `categories`(`id`,`name`)
 VALUES

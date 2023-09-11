@@ -3,6 +3,11 @@
     padding: 0;
 }
 */
+
+
+.border_border{
+    border:1px solid black;
+}
 .margin_cart{
     margin-right: 5px;
     margin-top: 5px;

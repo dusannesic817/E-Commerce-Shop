@@ -13,6 +13,7 @@ class Product{
     public function fetch_all($id){
 
         $sql= "SELECT 
+        `products`.`id` as product_id,
         `products`.`name` as name,
         `products`.`price` as price,
         `products`.`size` as size,
@@ -35,6 +36,43 @@ class Product{
         }
 
     }
+
+    public function fetch_product($id){
+        $sql= "SELECT 
+        `products`.`name` as name,
+        `products`.`price` as price,
+        `products`.`size` as size,
+        `products`.`image` as image,
+        `products`.`description` as description,
+        `clubs`.`name` as club_name
+        FROM 
+        `products`
+        LEFT JOIN `clubs` ON `clubs`.`id` = `products`.`club_id`
+        WHERE `products`.`id`= ?";
+
+        $stmt= $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        if($result->num_rows>0){
+
+            return $result->fetch_assoc();
+        }
+
+    }
+
+
+    public function size(){
+        $sql="SELECT * FROM `size` ";
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0){
+
+            return $row = $result->fetch_all(MYSQLI_ASSOC);
+    }
+}
 
 }
 

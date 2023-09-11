@@ -3,8 +3,9 @@
 require_once "inc/header.php";
 require_once "app/config/config.php";
 require_once "app/classes/User.php";
+require_once "app/classes/Validation.php";
 
-$zip_code="";
+
     if($_SERVER["REQUEST_METHOD"]== "POST"){
 
         $first_name= $conn->real_escape_string($_POST["first_name"]);
@@ -112,10 +113,6 @@ $zip_code="";
                                 }
                                 ?>
                             </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="zip" class="form-label">ZIP Code</label>
-                            <input type="text" class="form-control" id="zip" name="zip" value="<?php echo $zip_code?>">
                         </div>
                       
                         <div class="mb-3">

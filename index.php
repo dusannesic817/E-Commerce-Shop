@@ -7,40 +7,14 @@
    
     $porukaTekst = "";
     
-    if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])) {
+    if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
        
-        if (isset($_SESSION["message"]["text"])) {
+        if (isset($_SESSION["message"]["text"])){
             $porukaTekst = $_SESSION["message"]["text"];
         }
         unset($_SESSION["message"]);
     }
 
-
-    if($_SERVER["REQUEST_METHOD"]=="GET"){
-
-        $sql=" SELECT 
-        `id`, `name`,`image`
-        FROM `clubs`";
-    
-        $rezultat=$conn->query($sql);
-        $images=array();
-        $names=array();
-
-         if($rezultat->num_rows>0){
-
-            while($row=$rezultat->fetch_assoc()){
-                $img=$row["image"];
-                $images[]=$img;
-                
-                $name=$row["name"];
-                $names[]=$name;
-                
-                $niz = array_combine($names, $images);
-
-            }
-        }
-
-    }
   
 ?>
 
@@ -60,28 +34,41 @@
 </head>
 <p><?php echo $porukaTekst?></p>
 <body>
-    <div class="container margin_top">
-        <h1 class="margine_bottom">Premier League Shop</h1>
-        <div class="row gy-4">
-            <?php
-                    foreach($niz as $key=> $value){
-                ?>
-            <div class="col-md-3">
+<div class="container margin_top">
+    <h1 class="margine_bottom">Premier League Shop</h1>
+    <div class="row gy-4">
+        <?php
+            $sql = "SELECT `id`, `name`,`image` FROM `clubs`";
+            $rezultat = $conn->query($sql);
+
+            if ($rezultat->num_rows > 0){
+
+                $row = $rezultat->fetch_all(MYSQLI_ASSOC);
+
+                foreach ($row as $value){
+
+                    $id = $value["id"];
+        ?>
+        <div class="col-md-3 col-6">
+            <a href="products.php?id=<?php echo $id; ?>">
                 <div class="card" style="postion: relative;">
-                    <img src="public/images/<?php echo $value ?>" class="card-img" alt="...">
+                    <img src="public/images/<?php echo $value["image"] ?>" class="card-img" alt="...">
                     <div class="card-img-overlay">
                         <div class="card-title shadow">
-                            <h5><?php echo $key?></h5>
+                            <h5><?php echo $value["name"]; ?></h5>
                         </div>
                     </div>
                 </div>
-            </div>
-            <?php
-                }
-                
-            ?>
+            </a>
         </div>
+        <?php
+                }
+            }
+        ?>
     </div>
+</div>
+
+
 </body>
 <?php require_once "inc/footer.php";?>
 

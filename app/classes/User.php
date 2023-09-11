@@ -21,15 +21,15 @@
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("sssssssi", $first_name, $last_name, $username, $email, $hash, $number, $adress, $country_id);
             
-            $result = $stmt->execute();
+            return $stmt->execute();
         
-            if ($result) {
+          /* if ($result) {
                 $lastInsertedId = $this->conn->insert_id;
                 $_SESSION["id"] = $lastInsertedId;
                 return true;
             } else {
                 return false;
-            }
+            }*/
         }
         
 

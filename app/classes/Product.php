@@ -16,7 +16,6 @@ class Product{
         `products`.`id` as product_id,
         `products`.`name` as name,
         `products`.`price` as price,
-        `products`.`size` as size,
         `products`.`image` as image,
         `products`.`description` as description
         FROM 
@@ -41,7 +40,6 @@ class Product{
         $sql= "SELECT 
         `products`.`name` as name,
         `products`.`price` as price,
-        `products`.`size` as size,
         `products`.`image` as image,
         `products`.`description` as description,
         `clubs`.`name` as club_name

@@ -72,23 +72,7 @@ $sql = " CREATE TABLE IF NOT EXISTS `categories`
 ";
 
 
-$sql="CREATE TABLE IF NOT EXISTS `products`(
-  `id`  INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-  `name` VARCHAR(255),
-  `description` VARCHAR(255),
-  `price` DECIMAL(10, 2),
-  `image` VARCHAR(255),
-  `kolicina` INT,
-  `size` CHAR(1),
-  `club_id` INT UNSIGNED NOT NULL,
-  `category_id` INT UNSIGNED NOT NULL,
-  FOREIGN KEY(`club_id`) REFERENCES `clubs`(`id`),
-  FOREIGN KEY(`category_id`) REFERENCES `categories`(`id`)
 
-
-)ENGINE = InnoDB;
-
-";
 
 $sql="CREATE TABLE IF NOT EXISTS `size`(
   `id`INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -96,6 +80,35 @@ $sql="CREATE TABLE IF NOT EXISTS `size`(
 
 
 ); ";
+
+$sql="CREATE TABLE IF NOT EXISTS `products`(
+  `id`  INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(255),
+  `description` VARCHAR(255),
+  `price` DECIMAL(10, 2),
+  `image` VARCHAR(255),
+  `quantity` INT,
+  `club_id` INT UNSIGNED NOT NULL,
+  `category_id` INT UNSIGNED NOT NULL,
+  FOREIGN KEY(`club_id`) REFERENCES `clubs`(`id`),
+  FOREIGN KEY(`category_id`) REFERENCES `categories`(`id`)
+
+)ENGINE = InnoDB;
+
+";
+
+
+
+$sql="CREATE TABLE IF NOT EXISTS `cart` (
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `user_id` INT UNSIGNED,
+  `product_id` INT UNSIGNED,
+  `size_id` INT UNSIGNED,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`),
+  FOREIGN KEY (`product_id`) REFERENCES `products`(`id`),
+  FOREIGN KEY (`size_id`) REFERENCES `size`(`id`)
+) ENGINE = InnoDB;";
+
 /*
 $sql="INSERT INTO `size`(`id`,`size_name`)
 VALUES
@@ -105,6 +118,15 @@ VALUES
  ('','XL'),
  ('','XXL')
 ";*/
+/*
+$sql="INSERT INTO products (id, name, description, price, image, quantity, club_id, category_id)
+VALUES
+    (1, 'Home Jersey ', "The Adidas Arsenal Football Club 2022-23 jersey is red and white, without any blue detailing for the first since Adidas", 79.99, 'arsenal_home.jpg', 10, 1, 1),
+    (2, 'Away Jersey', "The Adidas Arsenal FC 23-24 away football shirt has a bright and modern look. It combines a fluo-green-yellow base color with black/bright blue for logos and applications.", 59.99, 'aresnal_away.jpg', 20, 1, 1),
+    (3, 'Home Jersey', 'New Aston Villa Jersey', 9.99, 'aston_vila_home.jpg', 15, 2, 1),
+    (4, 'Souvenir 4', 'Opis proizvoda 4', 39.99, 'slika4.jpg', 30, 2, 2),
+    (5, 'Proizvod 5', 'Opis proizvoda 5', 14.99, 'slika5.jpg', 25, 5, 2);";*/
+
 
 /*
 $sql="INSERT INTO `categories`(`id`,`name`)

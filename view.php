@@ -1,6 +1,7 @@
 <?php
 require_once "inc/header.php";
 require_once "app/classes/Product.php";
+require_once "app/classes/Cart.php";
 
 
     
@@ -19,8 +20,20 @@ if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
     $price=$get["price"];
     $description =$get["description"];
            
+}
 
 
+if($_SERVER["REQUEST_METHOD"]== "POST"  && isset($_GET["id"])){
+
+    $product_id=$conn->real_escape_string($_GET["id"]);
+    $user_id = $_SESSION["id"];
+    $size=$_POST["size"];
+
+    $cart=new Cart();
+    $cart->add_to_cart($user_id,$product_id,$size);
+
+    header("Location: cart.php");
+    exit();
 }
 
 ?>
@@ -61,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
                                 <tr>
                                     <th scope="row"></th>
                                     <td>Type</td>
-                                    <td><?php echo $name?></td>
+                                    <td><?php echo $type ?></td>
                                 </tr>
                                 <tr>
                                     <th scope="row"></th>
@@ -70,6 +83,7 @@ if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
                                 </tr>
                             </tbody>
                         </table>
+                        <form method="post" action="">
                         <div class="card-text border_border">
                             <?php
                             $size = $products->size();
@@ -79,7 +93,9 @@ if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
                                 $size_name = $value["size_name"];
                             ?>
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" name="size" id="size<?php echo $size_id; ?>" data-size-id="<?php echo $size_id; ?>" autocomplete="off">
+                            <input type="radio" class="btn-check" name="size" id="size<?php echo $size_id; ?>" data-size-id="<?php echo $size_id; ?>" value="<?php echo $size_id; ?>" autocomplete="off">
+
+
                                 <label class="btn btn-outline-primary" for="size<?php echo $size_id; ?>"><?php echo $size_name; ?></label>
                             </div>
                             <?php
@@ -90,7 +106,9 @@ if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
                             <?php echo $description; ?>
                         </div>
                         <div class="border_border">
-                            <a href="view.php?id=<?php echo $id; ?>" class="btn btn-primary">View product</a>
+                            
+                            <button type="submit" class="btn btn-primary"><i class="bi bi-bag-fill margin_cart"></i>Add to cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -34,9 +34,7 @@ $user=new User();
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link navbar-text" aria-current="page" href="cart.php"><i class="bi bi-bag-fill margin_cart"></i> Cart</a>
-        </li>
+      
         <?php
           if(!$user->isLoged()){
 
@@ -51,6 +49,9 @@ $user=new User();
         <?php
           }else{
         ?>
+          <li class="nav-item">
+          <a class="nav-link navbar-text" aria-current="page" href="cart.php"><i class="bi bi-bag-fill margin_cart"></i> Cart</a>
+        </li>
           <li class="nav-item">
           <a class="nav-link navbar-text " href="logout.php"><i class="bi bi-person-fill-gear margin_cart"></i> Log Out</a>
         </li>

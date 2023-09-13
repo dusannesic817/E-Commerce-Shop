@@ -19,6 +19,7 @@ if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
     $image=$get["image"];
     $price=$get["price"];
     $description =$get["description"];
+    $category=$get["category_id"];
            
 }
 
@@ -52,63 +53,59 @@ if($_SERVER["REQUEST_METHOD"]== "POST"  && isset($_GET["id"])){
 </head>
 <body>
     <div class="container margin_top">
-        <div class="card mb-3" style="max-width: 800px; height: 500px;">
-            <div class="row gx-3">
-                <div class="col-md-4">
-                    <img src="public/images/jerseys/<?php echo $image ?>" alt="Product Image" class="img-fluid rounded-start" style="width: 400px; height: 450px;">
-                </div>
-                <div class="col-md-8 row gy-4">
-                    <div class="card-body">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Team</td>
-                                    <td><?php echo $name?></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Season</td>
-                                    <td>??</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Type</td>
-                                    <td><?php echo $type ?></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>Price</td>
-                                    <td><?php echo $price?>$</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <form method="post" action="">
-                        <div class="card-text border_border">
-                            <?php
-                            $size = $products->size();
-
-                            foreach ($size as $value){
-                                $size_id = $value["id"];
-                                $size_name = $value["size_name"];
-                            ?>
-                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="size" id="size<?php echo $size_id; ?>" data-size-id="<?php echo $size_id; ?>" value="<?php echo $size_id; ?>" autocomplete="off">
-
-
-                                <label class="btn btn-outline-primary" for="size<?php echo $size_id; ?>"><?php echo $size_name; ?></label>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-sm-12">
+                <div class="card mb-3" style="max-width: 800px;">
+                    <div class="row gx-3">
+                        <div class="col-md-4 col-sm-6">
+                            <img src="public/images/jerseys/<?php echo $image?>" alt="Product Image" class="img-fluid rounded-start" style="width: 100%; height: auto;">
+                        </div>
+                        <div class="col-md-8 col-sm-6">
+                            <div class="card-body">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row">Team:</td>
+                                            <td><?php echo $name ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row">Season:</td>
+                                            <td>??</td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row">Type:</td>
+                                            <td><?php echo $type ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td scope="row">Price:</td>
+                                            <td><?php echo $price ?>$</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="card-text mt-4"><?php echo $description; ?></div>
+                                <form method="post" action="">
+                                    <div class="card-text mt-4">
+                                        <?php
+                                        $size = $products->size();
+                                        foreach ($size as $value){
+                                            $size_id = $value["id"];
+                                            $size_name = $value["size_name"];
+                                            if ($category == 1){
+                                        ?>
+                                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group" style="margin-right:0.2rem;">
+                                                <input type="radio" class="btn-check" name="size" id="size<?php echo $size_id; ?>" data-size-id="<?php echo $size_id; ?>" value="<?php echo $size_id; ?>" autocomplete="off">
+                                                <label class="btn btn-outline-primary" for="size<?php echo $size_id; ?>"><?php echo $size_name; ?></label>
+                                            </div>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                    <div class="mt-5">
+                                        <button type="submit" class="btn btn-primary"><i class="bi bi-bag-fill margin_cart"></i>Add to cart</button>
+                                    </div>
+                                </form>
                             </div>
-                            <?php
-                            }
-                            ?>
-                        </div>
-                        <div class="card-text border_border">
-                            <?php echo $description; ?>
-                        </div>
-                        <div class="border_border">
-                            
-                            <button type="submit" class="btn btn-primary"><i class="bi bi-bag-fill margin_cart"></i>Add to cart</button>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -116,5 +113,10 @@ if($_SERVER["REQUEST_METHOD"]== "POST"  && isset($_GET["id"])){
         </div>
     </div>
 </body>
+
 </html>
+
+<?php
+require_once "inc/footer.php";
+?>
 

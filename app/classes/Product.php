@@ -42,6 +42,7 @@ class Product{
         `products`.`price` as price,
         `products`.`image` as image,
         `products`.`description` as description,
+        `products`.`category_id` as category_id,
         `clubs`.`name` as club_name
         FROM 
         `products`
@@ -71,6 +72,17 @@ class Product{
             return $row = $result->fetch_all(MYSQLI_ASSOC);
     }
 }
+
+    public function product_id(){
+        $sql="SELECT id FROM `products`";
+        $result = $this->conn->query($sql);
+
+        if ($result->num_rows > 0){
+
+            return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    }
 
 }
 

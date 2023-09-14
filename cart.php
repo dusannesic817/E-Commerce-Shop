@@ -25,7 +25,7 @@ if(!$user->isLoged()){
                 <th scope="col">Size</th>
                 <th scope="col">Price</th>
                 <th scope="col">Image</th>
-                <th scope="col"></th>
+                <th scope="col">Quantity</th>
             </tr>
         </thead>
         <tbody></tbody>
@@ -39,11 +39,12 @@ if(!$user->isLoged()){
                 <td class="pt-3"><?php echo $value["size_name"]?></td>
                 <td class="pt-3"><?php echo $value["price"]?>$</td>
                 <td><img src="public/images/jerseys/<?php echo $value["image"] ?>" height="50"></td>
-                <td class="pt-3">?</td>
+                <td class="pt-3"><?php echo $value["quantity"]?></td>
             </tr>
             <?php
         }
             ?>
         </tbody>
     </table>
+    <a href="checkout.php" class="btn btn-success">Checkout order</a>
 </div>

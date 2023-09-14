@@ -73,6 +73,27 @@
         unset($_SESSION["id"]);
     }
 
+
+
+    public function user_data(){
+        $sql="SELECT 
+        *,
+        countries.country as country
+        FROM `users`
+        LEFT JOIN countries on users.coutry_id=countries.id
+        WHERE `users`.`id`=? ";
+
+        $stmt=$this->conn->prepare($sql);
+        $stmt->bind_param("i", $_SESSION["id"]);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        if($result->num_rows>0){
+
+            return $result->fetch_assoc();
+        }
+    }
+
 }
 
 

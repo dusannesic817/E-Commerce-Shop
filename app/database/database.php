@@ -101,6 +101,7 @@ $sql="CREATE TABLE IF NOT EXISTS `products`(
 
 $sql="CREATE TABLE IF NOT EXISTS `cart` (
   `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `quantity` VARCHAR(255),
   `user_id` INT UNSIGNED,
   `product_id` INT UNSIGNED,
   `size_id` INT UNSIGNED,
@@ -108,6 +109,26 @@ $sql="CREATE TABLE IF NOT EXISTS `cart` (
   FOREIGN KEY (`product_id`) REFERENCES `products`(`id`),
   FOREIGN KEY (`size_id`) REFERENCES `size`(`id`)
 ) ENGINE = InnoDB;";
+
+
+$sql="CREATE TABLE IF NOT EXISTS `orders`(
+  `id`INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `user_id` INT UNSIGNED,
+  `delivery_adress` TEXT NOT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`)
+)ENGINE = InnoDB;";
+
+$sql="CREATE TABLE IF NOT EXISTS `order_items`(
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `order_id` INT UNSIGNED,
+  `product_id` INT UNSIGNED,
+  `quantity` VARCHAR(255),
+  FOREIGN KEY (`product_id`) REFERENCES `products`(`id`),
+  FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`)
+
+
+)ENGINE = InnoDB;";
 
 /*
 $sql="INSERT INTO `size`(`id`,`size_name`)

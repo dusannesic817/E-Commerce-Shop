@@ -2,12 +2,18 @@
 
 
 require_once "app/classes/Validation.php";
+require_once "app/classes/Product.php";
+require_once "inc/header.php";
 
 
-$ime="dsa";
-$validation=new Validation();
+$product=new Product();
 
-$stampaj=$validation->validateUsername($ime);
+$get_id = $product->product_id();
 
-var_dump($stampaj);
+foreach($get_id as $value){
+   $get=$value["id"];
+   var_dump($get);
+}
+
+
 ?>

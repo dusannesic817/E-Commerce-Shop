@@ -4,6 +4,15 @@ require_once "app/classes/user.php";
 
 $user=new User();
 
+$porukaTekst = "";
+    
+if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
+   
+    if (isset($_SESSION["message"]["text"])){
+        $porukaTekst = $_SESSION["message"]["text"];
+    }
+    unset($_SESSION["message"]);
+}
 
 ?>
 
@@ -22,6 +31,7 @@ $user=new User();
 
 </head>
 <body>
+
     
 <nav class="navbar navbar-expand-lg navbar_color">
   <div class="container-fluid">
@@ -62,6 +72,6 @@ $user=new User();
     </div>
   </div>
 </nav>
-
+<p><?php echo $porukaTekst?></p>
 </body>
 </html>

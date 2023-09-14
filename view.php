@@ -20,18 +20,29 @@ if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
     $price=$get["price"];
     $description =$get["description"];
     $category=$get["category_id"];
+
+  
+
            
 }
 
+
+
+    
 
 if($_SERVER["REQUEST_METHOD"]== "POST"  && isset($_GET["id"])){
 
     $product_id=$conn->real_escape_string($_GET["id"]);
     $user_id = $_SESSION["id"];
     $size=$_POST["size"];
+    $quantity=$_POST["quantity"];
 
     $cart=new Cart();
-    $cart->add_to_cart($user_id,$product_id,$size);
+    $cart->add_to_cart($user_id,$product_id,$size,$quantity);
+
+
+
+   
 
     header("Location: cart.php");
     exit();
@@ -100,6 +111,9 @@ if($_SERVER["REQUEST_METHOD"]== "POST"  && isset($_GET["id"])){
                                             }
                                         }
                                         ?>
+                                    </div>
+                                    <div class="mt-5">
+                                        <input type="number" name="quantity">
                                     </div>
                                     <div class="mt-5">
                                         <button type="submit" class="btn btn-primary"><i class="bi bi-bag-fill margin_cart"></i>Add to cart</button>

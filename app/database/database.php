@@ -110,13 +110,49 @@ $sql="CREATE TABLE IF NOT EXISTS `cart` (
   FOREIGN KEY (`size_id`) REFERENCES `size`(`id`)
 ) ENGINE = InnoDB;";
 
-
+/*
 $sql="CREATE TABLE IF NOT EXISTS `orders`(
   `id`INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
   `user_id` INT UNSIGNED,
   `delivery_adress` TEXT NOT NULL,
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (`user_id`) REFERENCES `users`(`id`)
+)ENGINE = InnoDB;";
+
+$sql="CREATE TABLE IF NOT EXISTS `order_items`(
+  `id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `order_id` INT UNSIGNED,
+  `product_id` INT UNSIGNED,
+  `quantity` VARCHAR(255),
+  FOREIGN KEY (`product_id`) REFERENCES `products`(`id`),
+  FOREIGN KEY (`order_id`) REFERENCES `orders`(`id`)
+
+
+)ENGINE = InnoDB;";*/
+
+
+$sql="CREATE TABLE IF NOT EXISTS `delivery_adreses`(
+  `id`INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `first_name` VARCHAR(255),
+  `last_name` VARCHAR(255),
+  `email` VARCHAR(255),
+  `adress` VARCHAR(255),
+  `country` VARCHAR(255),
+  `number` VARCHAR(255)
+
+)";
+
+
+
+$sql="CREATE TABLE IF NOT EXISTS `orders`(
+  `id`INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  `user_id` INT UNSIGNED,
+  `delivery_adress_id` INT UNSIGNED,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+  FOREIGN KEY (`user_id`) REFERENCES `users`(`id`),
+  FOREIGN KEY (`delivery_adress_id`) REFERENCES `delivery_adreses`(`id`)
+
 )ENGINE = InnoDB;";
 
 $sql="CREATE TABLE IF NOT EXISTS `order_items`(

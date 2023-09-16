@@ -26,26 +26,30 @@ if(!$user->isLoged()){
 
    if($_SERVER["REQUEST_METHOD"]== "POST"){
 
-    $delivery_adress=$first_name=$_POST["first_name"] ." ". $last_name=$_POST["last_name"]. " ". $email=$_POST["email"]." ".$adress=$_POST["adress"]. " ". $country=$_POST["country"]. " ". $number=$_POST["number"];
+    $first_name=$_POST["first_name"];
+    $last_name=$_POST["last_name"];
+    $email=$_POST["email"]; 
+    $adress=$_POST["adress"];
+    $country=$_POST["country"];
+    $number=$_POST["number"];
 
 
     $order=new Order();
 
     
 
-     $orders= $order->create_order($delivery_adress);
+     $orders= $order->create_order($first_name, $last_name, $email, $adress,$country,$number);
 
 
 
       $_SESSION["message"]["type"]= "success"; 
       $_SESSION["message"]["text"]= "Successful order"; 
-      header("Location: orders.php");
+      header("Location: my_orders.php");
+      $empty=$order->empty_cart();
+
       exit();
-  
 
-    
-
-
+      
 
    }
 

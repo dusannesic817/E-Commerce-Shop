@@ -39,11 +39,13 @@ if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
       <img src="public/images/logo1.png" alt="Logo" width="50" height="35" class="d-inline-block align-text-top">
         League 
     </a>
+      
     <button class="navbar-toggler navbar-text" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon navbar-text"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
+     
       
         <?php
           if(!$user->isLoged()){
@@ -60,7 +62,10 @@ if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
           }else{
         ?>
           <li class="nav-item">
-          <a class="nav-link navbar-text" aria-current="page" href="cart.php"><i class="bi bi-bag-fill margin_cart"></i> Cart</a>
+          <a class="nav-link navbar-text" aria-current="page" href="cart.php"><i class="bi bi-basket3-fill margin_cart"></i>Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navbar-text" aria-current="page" href="my_orders.php"><i class="bi bi-bag-fill margin_cart"></i> My orders</a>
         </li>
           <li class="nav-item">
           <a class="nav-link navbar-text " href="logout.php"><i class="bi bi-person-fill-gear margin_cart"></i> Log Out</a>

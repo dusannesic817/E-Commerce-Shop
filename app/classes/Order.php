@@ -11,20 +11,31 @@ class Order extends Cart{
     }
 
 
-    public function create_order($delivery_adress){
+    public function create_order($first_name, $last_name, $email, $adress,$country,$number){
 
        // return $this->get_cart_items();
 
-      $sql="INSERT INTO `orders` (`user_id`,`delivery_adress`)
+      $sql="INSERT INTO `delivery_adreses` (`first_name`,`last_name`,`email`,`adress`,`country`,`number`)
         VALUES
-         (?,?);
+         (?,?,?,?,?,?);
       
      " ;
 
      $stmt=$this->conn->prepare($sql);
-     $stmt->bind_param("is", $_SESSION["id"],$delivery_adress);
+     $stmt->bind_param("ssssss",$first_name, $last_name, $email, $adress,$country,$number);
       $stmt->execute();
 
+
+      $delivery_adress_id=$this->conn->insert_id;
+
+
+      $sqlo="INSERT INTO `orders`(`user_id`,`delivery_adress_id`)
+      values(?,?)
+      ";
+
+      $stmt->prepare($sqlo);
+      $stmt->bind_param("ii",$_SESSION["id"], $delivery_adress_id);
+      $stmt->execute();
 
       $order_id=$this->conn->insert_id;
 
@@ -42,6 +53,17 @@ class Order extends Cart{
      
 
     }
+
+
+    public function empty_cart(){
+      $id=$_SESSION["id"];
+      $sql="DELETE FROM `cart`WHERE `user_id`=$id
+      ";
+      $stmt=$this->conn->prepare($sql);
+      $stmt->prepare($sql);
+      return $stmt->execute();
+    }
+
 
     
 

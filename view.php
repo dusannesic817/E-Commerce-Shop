@@ -27,9 +27,6 @@ if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
 }
 
 
-
-    
-
 if($_SERVER["REQUEST_METHOD"]== "POST"  && isset($_GET["id"])){
 
     $product_id=$conn->real_escape_string($_GET["id"]);
@@ -39,10 +36,6 @@ if($_SERVER["REQUEST_METHOD"]== "POST"  && isset($_GET["id"])){
 
     $cart=new Cart();
     $cart->add_to_cart($user_id,$product_id,$size,$quantity);
-
-
-
-   
 
     header("Location: cart.php");
     exit();

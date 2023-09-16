@@ -48,3 +48,6 @@ if(!$user->isLoged()){
     </table>
     <a href="checkout.php" class="btn btn-success">Checkout order</a>
 </div>
+
+
+<?php 

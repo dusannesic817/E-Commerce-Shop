@@ -26,13 +26,14 @@ if(!$user->isLoged()){
                 <th scope="col">Price</th>
                 <th scope="col">Image</th>
                 <th scope="col">Quantity</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody></tbody>
         <?php
         foreach($cart_items as $value){
            // var_dump($value);
-        
+            $id=$value["id"];
         ?>
             <tr>
                 <td class="pt-3"><?php echo $value['club_name']." - ". $value['name']?></td>
@@ -40,6 +41,7 @@ if(!$user->isLoged()){
                 <td class="pt-3"><?php echo $value["price"]?>$</td>
                 <td><img src="public/images/jerseys/<?php echo $value["image"] ?>" height="50"></td>
                 <td class="pt-3"><?php echo $value["quantity"]?></td>
+                <td class="pt-3"><a href="delete_product.php?id=<?php echo $id ?>"> <i class="bi bi-trash"></i></a></td>
             </tr>
             <?php
         }

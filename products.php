@@ -16,8 +16,6 @@ require_once "app/classes/Product.php";
         //var_dump($get);
 
         
-
-        
     }
     
     ?>

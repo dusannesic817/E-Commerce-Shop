@@ -46,6 +46,16 @@ class Cart{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+
+
+    public function delete_product($product_id){
+        $sql="DELETE FROM `cart` WHERE product_id=? LIMIT 1;";
+
+        $stmt=$this->conn->prepare($sql);
+        $stmt->bind_param("i", $product_id);
+        return $stmt->execute();
+    }
+
 }
 
 ?>

@@ -22,13 +22,8 @@ require_once "validation.php";
 
         $user=new User();
 
+        $create= $user->createUser($first_name, $last_name,$username,$email,$password,$number,$adress,$country_id);
         
-
-            $create= $user->createUser($first_name, $last_name,$username,$email,$password,$number,$adress,$country_id);
-        
-
-        //$create= $user->createUser($first_name, $last_name,$username,$email,$password,$number,$adress,$country_id);
-
         if($create){
             $_SESSION["message"]["type"]= "success"; 
             $_SESSION["message"]["text"]= "Successfully registered account"; 
@@ -40,8 +35,6 @@ require_once "validation.php";
             header("Location: register.php");
             exit();
         }
-
-        
     }
 
 
@@ -112,8 +105,7 @@ require_once "validation.php";
                                     foreach($row as $value){
                                     
                                 ?>
-                                <option value="<?php echo $value['id']?>"> <?php echo $value['country']?></option>
-                            
+                                    <option value="<?php echo $value['id']?>"> <?php echo $value['country']?></option>
                                 <?php
                                 }
                                 ?>
@@ -143,8 +135,6 @@ require_once "validation.php";
 
 </body>
 </html>
-
 <?php
-
     require_once "inc/footer.php";
-    ?>
+    

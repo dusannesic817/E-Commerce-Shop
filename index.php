@@ -4,7 +4,6 @@
     require_once "app/config/config.php";
     require_once "app/classes/user.php";
 
-   
     $porukaTekst = "";
     
     if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
@@ -15,7 +14,6 @@
         unset($_SESSION["message"]);
     }
 
-  
 ?>
 
 <!DOCTYPE html>
@@ -42,9 +40,7 @@
             $rezultat = $conn->query($sql);
 
             if ($rezultat->num_rows > 0){
-
                 $row = $rezultat->fetch_all(MYSQLI_ASSOC);
-
                 foreach ($row as $value){
 
                     $id = $value["id"];

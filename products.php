@@ -1,6 +1,5 @@
 <?php
 
-
 require_once "inc/header.php";
 require_once "app/classes/Product.php";
     
@@ -15,7 +14,6 @@ require_once "app/classes/Product.php";
 
         //var_dump($get);
 
-        
     }
     
     ?>

@@ -4,7 +4,6 @@ require_once "app/classes/Product.php";
 require_once "app/classes/Cart.php";
 
 
-    
 if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
 
     $id=$conn->real_escape_string($_GET["id"]);
@@ -21,9 +20,6 @@ if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
     $description =$get["description"];
     $category=$get["category_id"];
 
-  
-
-           
 }
 
 

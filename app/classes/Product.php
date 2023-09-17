@@ -85,9 +85,6 @@ class Product{
     }
 
 
-
-
-
     public function fetch_all_products(){
         $sql= "SELECT 
         `products`.`name` as name,
@@ -141,7 +138,7 @@ class Product{
     }
 
 
-    public function update_product($product_id){
+    public function update_product($name,$description,$price,$image,$quantity,$club_id,$category_id,$product_id){
         $sql="UPDATE `products` SET `name`=?, `description`=?, `price`=?, `image`=?,`quantity`=?, `club_id`=?, `category_id`=? WHERE `products`.id=?";
         $stmt=$this->conn->prepare($sql);
         $stmt->bind_param("ssdsiiii",$name,$description,$price,$image,$quantity,$club_id,$category_id,$product_id);
@@ -156,7 +153,7 @@ class Product{
         $stmt=$this->conn->prepare($sql);
 
         $stmt->bind_param("i", $product_id);
-       return $stmt->execute();
+        $stmt->execute();
 
 
     }

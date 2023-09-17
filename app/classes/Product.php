@@ -84,6 +84,85 @@ class Product{
 
     }
 
+
+
+
+
+    public function fetch_all_products(){
+        $sql= "SELECT 
+        `products`.`name` as name,
+        `products`.`id` as product_id,
+        `products`.`price` as price,
+        `products`.`image` as image,
+        `products`.`description` as description,
+        `products`.`quantity` as quantity,
+        `products`.`category_id` as category_id,
+        `clubs`.`name` as club_name,
+        `clubs`.`id` as club_id
+        FROM 
+        `products`
+        LEFT JOIN `clubs` ON `clubs`.`id` = `products`.`club_id`";
+
+        $stmt= $this->conn->prepare($sql);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        if($result->num_rows>0){
+
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+    }
+    public function create_product($name,$description,$price,$image,$quantity,$club_id,$category_id){
+
+        $sql="INSERT INTO `products` (`name`, `description`,`price`,`image`,`quantity`,`club_id`,`category_id`)
+            VALUES(?,?,?,?,?,?,?)
+        ";
+
+        $stmt=$this->conn->prepare($sql);
+        $stmt->bind_param("ssdsiii",$name,$description,$price,$image,$quantity,$club_id,$category_id);
+        $stmt->execute();
+
+        
+    }
+
+    public function read_product($product_id){
+        $sql="SELECT * FROM `products` WHERE `products`.`id`=?";
+        $stmt=$this->conn->prepare($sql);
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+
+        $result=$stmt->get_result();
+
+        return $result->fetch_assoc();
+
+
+    }
+
+
+    public function update_product($product_id){
+        $sql="UPDATE `products` SET `name`=?, `description`=?, `price`=?, `image`=?,`quantity`=?, `club_id`=?, `category_id`=? WHERE `products`.id=?";
+        $stmt=$this->conn->prepare($sql);
+        $stmt->bind_param("ssdsiiii",$name,$description,$price,$image,$quantity,$club_id,$category_id,$product_id);
+        $stmt->execute();
+
+    }
+
+
+    public function delete_product($product_id){
+        $sql="DELETE FROM `products` WHERE `products`.`id`=?";
+
+        $stmt=$this->conn->prepare($sql);
+
+        $stmt->bind_param("i", $product_id);
+       return $stmt->execute();
+
+
+    }
+
+
+
 }
 
 

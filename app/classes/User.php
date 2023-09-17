@@ -32,9 +32,6 @@
             }*/
         }
         
-
-
-
         public function login($username, $password){
 
             $sql="SELECT `id`, `password` FROM `users` WHERE `username`=?;
@@ -92,6 +89,24 @@
 
             return $result->fetch_assoc();
         }
+    }
+
+
+    public function is_admin(){
+        $sql="SELECT * FROM `users` WHERE `id`=? AND `is_admin`=1;";
+
+        $stmt=$this->conn->prepare($sql);
+        $stmt->bind_param("i",$_SESSION["id"]);
+        $stmt->execute();
+
+        $result=$stmt->get_result();
+
+        if($result->num_rows>0){
+            return true;
+        }
+        return false;
+
+
     }
 
 }

@@ -32,7 +32,6 @@ if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
 </head>
 <body>
 
-    
 <nav class="navbar navbar-expand-lg navbar_color">
   <div class="container-fluid">
   <a class="navbar-brand navbar-text" href="index.php">Premier

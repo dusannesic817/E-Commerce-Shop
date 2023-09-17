@@ -36,8 +36,9 @@ require_once "app/classes/Product.php";
         <h1 class="margine_bottom">Premier League Shop</h1>
 
         <div class="row gy-4">
-            <?php foreach ($get as $value) { 
-              $id=$value["product_id"]
+            <?php 
+                foreach ($get as $value) { 
+                $id=$value["product_id"]
               ?>
               
                 <div class="col-md-3 col-6">

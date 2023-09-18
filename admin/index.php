@@ -44,7 +44,7 @@ $products=$product->fetch_all_products();
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Log out</a>
+          <a class="nav-link" href="logout.php">Log out</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" aria-disabled="true">#</a>

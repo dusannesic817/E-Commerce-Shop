@@ -47,6 +47,7 @@ class Cart{
     }
 
 
+ 
 
     public function delete_product($product_id){
         $sql="DELETE FROM `cart` WHERE product_id=? LIMIT 1;";

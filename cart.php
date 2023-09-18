@@ -42,7 +42,7 @@ if(!$user->isLoged()){
                 <th scope="col"></th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
         <?php
         foreach($cart_items as $value){
            // var_dump($value);

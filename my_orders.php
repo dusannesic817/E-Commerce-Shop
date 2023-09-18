@@ -32,6 +32,11 @@ require_once "app/classes/Order.php";
     <title>PL Shop</title>
 </head>
 <body>
+    <?php
+        if($list!=NULL){
+
+        
+    ?>
 <div class="container">
     <h2>Order</h2>
     <table class="table table-striped">
@@ -115,6 +120,38 @@ require_once "app/classes/Order.php";
         </div>
     </div>
 </div>
+<?php
+        }else{
+?>
+
+<div class="container">
+    <h2>Order</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Order ID</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image</th>
+                <th scope="col">Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td class="pt-3"></td>
+                <td class="pt-3"></td>
+                <td class="pt-3"></td>
+                <td><img src=""></td>
+                <td class="pt-3"></td>
+            </tr>
+        <?php
+            }
+        ?>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>
 

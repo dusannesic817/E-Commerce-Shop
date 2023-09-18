@@ -102,7 +102,8 @@ if($_SERVER["REQUEST_METHOD"]== "POST"  && isset($_GET["id"])){
                                         ?>
                                     </div>
                                     <div class="mt-5">
-                                        <input type="number" name="quantity">
+                                    <label for="broj" class="form-label">Number</label>
+                                        <input type="number" class="form-control w-50" name="quantity">
                                     </div>
                                     <div class="mt-5">
                                         <button type="submit" class="btn btn-primary"><i class="bi bi-bag-fill margin_cart"></i>Add to cart</button>

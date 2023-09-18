@@ -39,12 +39,6 @@ exit();
  
 }
     
-
-
-//$create=$product->update_product($name,$description,$price,$image,$quantity,$club_id,$category_id);
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -113,9 +107,9 @@ exit();
           
 </div>
 <div class="row mt-5">
-<div class="col-sm-4">
-<button type="submit" class="btn btn-success">Update</button>  
-</div>
+  <div class="col-sm-4">
+    <button type="submit" class="btn btn-success">Update</button>  
+  </div>
 </div>
 </form>
 </div>

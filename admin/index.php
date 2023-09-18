@@ -46,9 +46,6 @@ $products=$product->fetch_all_products();
         <li class="nav-item">
           <a class="nav-link" href="logout.php">Log out</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">#</a>
-        </li>
       </ul>
     </div>
   </div>

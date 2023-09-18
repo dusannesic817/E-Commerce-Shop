@@ -74,7 +74,10 @@ require_once "app/classes/Order.php";
         <div class="col-6">
             <h2>Customer</h2>
             <table class="table">
-                <tbody>
+                <tbody>  <tr>
+                        <td scope="row">Order ID:</td>
+                        <td><?php echo $value["order_id"] ?></td>
+                    </tr>
                     <tr>
                         <td scope="row">First Name:</td>
                         <td><?php echo $value["first_name"] ?></td>
@@ -102,6 +105,10 @@ require_once "app/classes/Order.php";
                     <tr>
                         <td scope="row">Total:</td>
                         <td><?php echo $sum; ?>$</td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Created at:</td>
+                        <td><?php echo $value["created_at"] ?></td>
                     </tr>
                 </tbody>
             </table>

@@ -5,7 +5,7 @@
 
     $photo_name= basename($photo["name"]);
 
-    $photo_path="../public/images/jerseys/" .$photo_name;
+    $photo_path="../public/product_image/" .$photo_name;
     $allowed_ext = ["jpg", "jpeg", "png", "gif"];
 
     $ext = pathinfo($photo_name, PATHINFO_EXTENSION);

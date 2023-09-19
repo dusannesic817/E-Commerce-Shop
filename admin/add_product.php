@@ -6,6 +6,7 @@ require_once "../app/classes/Product.php";
 require_once "../app/classes/User.php";
 
 $user=new User();
+$product=new Product();
 
 
 if($user->isLoged() && $user->is_admin()){
@@ -21,6 +22,8 @@ if($user->isLoged() && $user->is_admin()){
         $category_id=$_POST["category_id"];
 
         $product=new Product();
+
+        
 
 
 
@@ -126,5 +129,62 @@ if($user->isLoged() && $user->is_admin()){
             }
         };
     </script>
+
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6">
+      <h2>Clubs Table</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Club ID</th>
+            <th scope="col">Club Name</th>
+          </tr>
+        </thead>
+        <tbody>
+            <?php 
+                $clubs=$product->fetch_club();
+                foreach($clubs as $value){
+            ?>
+          <tr>
+            <th scope="row"><?php echo $value["id"]?></th>
+            <td> <?php echo $value["name"]?></td>
+          </tr>
+          <?php
+          }
+          
+          ?>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6">
+      <h2>Category table</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Club ID</th>
+            <th scope="col">Club Name</th>
+          </tr>
+        </thead>
+        <tbody>
+            <?php 
+                $category=$product->fetch_category();
+                foreach($category as $value){
+            ?>
+          <tr>
+            <th scope="row"><?php echo $value["id"]?></th>
+            <td> <?php echo $value["name"]?></td>
+          </tr>
+          <?php
+          }
+          
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

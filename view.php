@@ -58,7 +58,7 @@ if($_SERVER["REQUEST_METHOD"]== "POST"  && isset($_GET["id"])){
                 <div class="card mb-3" style="max-width: 800px;">
                     <div class="row gx-3">
                         <div class="col-md-4 col-sm-6">
-                            <img src="public/images/jerseys/<?php echo $image?>" alt="Product Image" class="img-fluid rounded-start" style="width: 100%; height: auto;">
+                            <img src="public/product_image/<?php echo $image?>" alt="Product Image" class="img-fluid rounded-start" style="width: 100%; height: auto;">
                         </div>
                         <div class="col-md-8 col-sm-6">
                             <div class="card-body">

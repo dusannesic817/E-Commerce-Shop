@@ -13,7 +13,7 @@ if($user->isLoged() && $user->is_admin()){
 $product=new Product();
 
 $products=$product->fetch_all_products();
-
+}
 
 ?>
 
@@ -76,7 +76,7 @@ $products=$product->fetch_all_products();
       <td> <?php echo $value["name"];?></td>
       <td><?php echo $value["club_name"];?></td>
       <td>$<?php echo $value["price"];?></td>
-      <td><img src="../public/images/jerseys/<?php echo $value["image"] ?>" height="50"></td>
+      <td><img src="../public/product_image/<?php echo $value["image"] ?>" height="50"></td>
       <td><?php echo $value["quantity"];?></td>
     
       <td  style="text-align:center;" >
@@ -92,15 +92,7 @@ $products=$product->fetch_all_products();
 </table>
 <a href="add_product.php" class="btn btn-success">Add Product</a>
 
-
 </div>
 
 </body>
 </html>
-
-
-
-<?php
-
-}
-?>

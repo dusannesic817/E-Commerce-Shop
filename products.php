@@ -43,7 +43,7 @@ require_once "app/classes/Product.php";
               
                 <div class="col-md-3 col-6">
                     <div class="card mb-3 h-100" style="max-width: 550px;">
-                        <img src="public/images/jerseys/<?php echo $value["image"] ?>" class="img-fluid rounded-start" style="height: 300px;">
+                        <img src="public/product_image/<?php echo $value["image"] ?>" class="img-fluid rounded-start" style="height: 300px;">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $value["name"] ?></h5>
                            

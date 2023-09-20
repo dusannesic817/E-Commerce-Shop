@@ -64,7 +64,7 @@ require_once "app/classes/Order.php";
                 <td class="pt-3"><?php echo $value["order_id"]; ?></td>
                 <td class="pt-3"><?php echo $value["name"] . " - " . $value["club_name"]; ?></td>
                 <td class="pt-3"><?php echo $value["price"] ?>$</td>
-                <td><img src="public/product_image/<?php echo $value["image"] ?>" height="50"></td>
+                <td><img src="public/product_image/<?php echo $value["image"]; ?>" height="50"></td>
                 <td class="pt-3"><?php echo $value["quantity"] ?></td>
             </tr>
         <?php

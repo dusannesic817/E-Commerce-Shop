@@ -69,6 +69,7 @@ class Order extends Cart{
       $sql="SELECT 
       `orders`.id as order_id,
       `products`.name as name,
+      `products`.`image` as image,
       clubs.name as club_name,
       products. price as price,
       order_items.quantity as quantity,

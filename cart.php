@@ -52,7 +52,7 @@ if(!$user->isLoged()){
                 <td class="pt-3"><?php echo $value['club_name']." - ". $value['name']?></td>
                 <td class="pt-3"><?php echo $value["size_name"]?></td>
                 <td class="pt-3"><?php echo $value["price"]?>$</td>
-                <td><img src="public/product_image/<?php echo $value["image"] ?>" height="50"></td>
+                <td><img src="public/product_image/<?php echo $value['image'] ?>" height="50"></td>
                 <td class="pt-3"><?php echo $value["quantity"]?></td>
                 <td class="pt-3"><a href="delete_product.php?id=<?php echo $id ?>"> <i class="bi bi-trash"></i></a></td>
             </tr>

@@ -59,6 +59,8 @@ require_once "app/classes/Order.php";
 
                 $ukupno = $cena * $kolicina;
                 $sum += $ukupno;
+
+                   
         ?>
             <tr>
                 <td class="pt-3"><?php echo $value["order_id"]; ?></td>

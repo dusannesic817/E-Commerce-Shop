@@ -6,6 +6,7 @@
 
     $porukaTekst = "";
     
+    
     if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
        
         if (isset($_SESSION["message"]["text"])){

@@ -5,7 +5,7 @@
     require_once "app/classes/user.php";
 
     $porukaTekst = "";
-    
+
     
     if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
        
@@ -48,7 +48,7 @@
         ?>
         <div class="col-md-3 col-6">
             <a href="products.php?id=<?php echo $id; ?>">
-                <div class="card" style="postion: relative;">
+                <div class="card" style="position: relative;">
                     <img src="public/images/<?php echo $value["image"] ?>" class="card-img" alt="...">
                     <div class="card-img-overlay">
                         <div class="card-title shadow">

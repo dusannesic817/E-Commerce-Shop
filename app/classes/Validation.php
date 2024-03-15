@@ -11,13 +11,10 @@ class Validation{
         return "Number must contain 9 or 10 numbers";
     }
     
-    function validateEmail($email){
-        return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
-    }
     
-    function validateUsername($username){
-       /* $query="SELECT * FROM `users` WHERE `username`='$username'";
-        $result=$c->query($query);*/
+    function validateUsername($username,$conn){
+       $query="SELECT * FROM `users` WHERE `username`='$username'";
+        $result=$conn->query($query);
     
     
         if(empty($username)){
@@ -33,12 +30,15 @@ class Validation{
             return "Username must be between 5 and 25 characters";
     
     
-        }else{
+        }elseif($result->num_rows>0){
+            return "Username alredy exist";
+        }
+        else{
             return "";
         }
     }
     
-    function validatePassword($password){
+    function validatePassword($password,$retype){
         if(strlen($password) < 8){
             return "Password cannot contain less than 8 characters";
         }
@@ -56,6 +56,9 @@ class Validation{
         if(!preg_match('/[\W_]/', $password)){
             return "Password must contain one big letter, number and specific characher";
         
+        }
+        if($password!==$retype){
+            return "Password must match";
         }
         return "";
     }

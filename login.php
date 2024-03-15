@@ -4,7 +4,7 @@ require_once "inc/header.php";
 require_once "app/config/config.php";
 require_once "app/classes/User.php";
 
-
+$username='';
 
 
     if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -17,8 +17,7 @@ require_once "app/classes/User.php";
        $login= $user->login($username,$password);
 
        if(!$login){
-        $_SESSION["message"]["type"]= "danger"; 
-        $_SESSION["message"]["text"]= "Wrong Password or Username";
+       $_SESSION['loginmessage']='Wrong username or password';
         header("Location: login.php");
         exit();
     }
@@ -54,12 +53,18 @@ require_once "app/classes/User.php";
                     <form action="#" method="POST">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
+                            <input type="text" class="form-control" id="username" name="username" required value=<?php echo $username?>>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
+                        <div id="usernameError" class="form-text mb-2" style="text-align:center">
+                                <?php if(isset($_SESSION['loginmessage'])){
+                                    echo $_SESSION['loginmessage'];
+                                    unset($_SESSION['loginmessage']);
+                                } ?>
+                            </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Login</button>
                         </div>

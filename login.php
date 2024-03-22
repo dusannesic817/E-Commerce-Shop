@@ -36,10 +36,7 @@ $username='';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login</title>
     
-    <!-- MDB CSS (Include the path to your MDB CSS file) -->
     <link rel="stylesheet" href="path-to-your-mdb-css/mdb.min.css">
-    
-    <!-- Font Awesome Icons (if not already included in MDB) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -68,7 +65,7 @@ $username='';
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary">Login</button>
                         </div>
-                        <p class="mt-3 text-center"><a href="#">Forgot Password?</a></p>
+                        <p class="mt-3 text-center"><a href="forgot_password.php">Forgot Password?</a></p>
                     </form>
                 </div>
             </div>
@@ -76,7 +73,6 @@ $username='';
     </div>
 </div>
 
-<!-- MDB JavaScript (Include the path to your MDB JavaScript file) -->
 <script src="path-to-your-mdb-js/mdb.min.js"></script>
 
 </body>

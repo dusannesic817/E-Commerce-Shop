@@ -35,11 +35,10 @@ $adress='';
 
     if (empty($usernameValidation) && empty($passwordValidation)) {
 
-        $create = $user->createUser($first_name, $last_name, $username, $email, $password, $number, $address, $country_id);
+        $create = $user->createUser($first_name, $last_name, $username, $email, $password, $number, $adress, $country_id);
 
         if ($create) {
-            $_SESSION["message"]["type"] = "success";
-            $_SESSION["message"]["text"] = "Successfully registered account";
+            $_SESSION['succesregister'] = "Register successed, Welcome";
             header("Location: index.php");
             exit();
         } else {

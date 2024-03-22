@@ -23,10 +23,6 @@ if($user->isLoged() && $user->is_admin()){
 
         $product=new Product();
 
-        
-
-
-
     $create=$product->create_product($name,$description,$price,$image,$quantity,$club_id,$category_id);
 
     header("Location: index.php");

@@ -10,7 +10,9 @@ class Product{
     }
 
     
-    public function fetch_all($id){
+    public function fetch_all($id,$limit,$page){
+
+        $start=($page-1)*$limit;
 
         $sql= "SELECT 
         `products`.`id` as product_id,
@@ -21,7 +23,8 @@ class Product{
         FROM 
         `products`
         LEFT JOIN `clubs` ON `clubs`.`id` = `products`.`club_id`
-        WHERE clubs.id= ?";
+        WHERE clubs.id= ?
+        LIMIT $start,$limit";
 
         $stmt= $this->conn->prepare($sql);
         $stmt->bind_param("i", $id);
@@ -32,9 +35,50 @@ class Product{
         if($result->num_rows>0){
 
             return $result->fetch_all(MYSQLI_ASSOC);
+        }else{
+            return [];
         }
 
     }
+
+    public function count($id){
+        $sql = 'SELECT count(id) as product_count FROM products WHERE club_id=?';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $stmt->bind_result($product_count);
+        $stmt->fetch();
+        return $product_count;
+    }
+
+
+    public function search($search) {
+        $sql= "SELECT 
+        `products`.`name` as name,
+        `products`.`price` as price,
+        `products`.`image` as image,
+        `products`.`description` as description,
+        `products`.`category_id` as category_id,
+        `clubs`.`name` as club_name
+    FROM 
+        `products`
+    LEFT JOIN `clubs` ON `clubs`.`id` = `products`.`club_id`
+    WHERE 
+        $search";
+
+    
+        $result = $this->conn->query($sql);
+    
+        if($result->num_rows > 0){
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+    }
+    
+    
+    
+    
 
     public function fetch_product($id){
         $sql= "SELECT 
@@ -119,7 +163,7 @@ class Product{
 
         $stmt=$this->conn->prepare($sql);
         $stmt->bind_param("ssdsiii",$name,$description,$price,$image,$quantity,$club_id,$category_id);
-        $stmt->execute();
+        return $stmt->execute();
 
         
     }

@@ -1,6 +1,7 @@
 
 <?php
-
+date_default_timezone_set('Europe/Belgrade');
+$_SESSION['bad_logins']=0;
     class User{
 
         protected $conn;
@@ -36,23 +37,32 @@
 
             $sql="SELECT `id`, `password` FROM `users` WHERE `username`=?;
             ";
-             $stmt= $this->conn->prepare($sql);
-             $stmt->bind_param("s", $username);
-             $stmt->execute();
 
-             $result = $stmt->get_result();
+            $stmt= $this->conn->prepare($sql);
+            $stmt->bind_param('s', $username);
+            $stmt->execute();
 
-             if($result->num_rows==1){
+            $result= $stmt->get_result();
 
-                $row = $result->fetch_assoc();
+            if($result->num_rows==1){
 
-                if(password_verify($password, $row["password"])){  // row["password"]               
-                    $_SESSION["id"]=$row["id"];
-    
+                $row=$result->fetch_assoc();
+
+                if(password_verify($password,$row['password'])){
+                    $_SESSION['id']=$row['id'];
+                    unset($_SESSION['bad_login']);
                     return true;
+                }else{
+                    $_SESSION['bad_login']++;
+                    if($_SESSION['bad_login']>5){
+                        
+                        header('location: reset_password.php');
+                        exit();
+                    }
                 }
-             }
-             return false;
+            }
+
+            return false;
     }
 
 
@@ -109,7 +119,53 @@
 
     }
 
+
+    public function resetPassword($hash_token, $exp_at, $email){
+
+        $sql = 'UPDATE users SET 
+                reset_token=?, 
+                reset_token_exp=? 
+                WHERE email=?';
+    
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('sss', $hash_token, $exp_at, $email);
+        return $stmt->execute();
+    }
+    
+
+    public function getUsersToken($token){
+        $sql = 'SELECT * FROM users WHERE reset_token=?';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $token);
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
+
+        if($result->num_rows>0){
+
+            return $result->fetch_assoc();
+        }
+    }
+
+
+    public function new_password($id,$password){
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+        $sql='UPDATE users SET
+                password = ?,
+                reset_token=NULL,
+                reset_token_exp= NULL
+                WHERE id=?';
+         $stmt = $this->conn->prepare($sql);
+         $stmt->bind_param('si', $hash,$id);
+         return $stmt->execute();
+    }
+    
+    
+    
+
 }
+
+
 
 
 

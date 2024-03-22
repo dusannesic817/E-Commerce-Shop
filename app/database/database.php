@@ -64,6 +64,11 @@ $sql=" CREATE TABLE IF NOT EXISTS `users`(
 )ENGINE = InnoDB;";
 
 
+$sql='ALTER table users
+ADD reset_token VARCHAR(64) NULL DEFAULT NULL UNIQUE,
+ADD reset_token_exp DATETIME NULL DEFAULT NULL';
+
+
 $sql = " CREATE TABLE IF NOT EXISTS `categories`
 (`id` INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 `name` VARCHAR(255)

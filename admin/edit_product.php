@@ -6,7 +6,7 @@ require_once "../app/classes/User.php";
 
 $user=new User();
 
-if(isset($_GET["id"]) &&  $user->isLoged() && $user->is_admin() ){
+if(isset($_GET["id"]) &&  $user->isLoged() && $user->is_admin()){
 
   $product=new Product();
 

@@ -3,17 +3,10 @@
     require_once "inc/header.php";
     require_once "app/config/config.php";
     require_once "app/classes/user.php";
+    require_once "app/classes/Product.php";
 
-    $porukaTekst = "";
 
-    
-    if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
-       
-        if (isset($_SESSION["message"]["text"])){
-            $porukaTekst = $_SESSION["message"]["text"];
-        }
-        unset($_SESSION["message"]);
-    }
+
 
 ?>
 
@@ -31,8 +24,18 @@
     <link rel="stylesheet" href="public/css/style.css">
     <title>PL Shop</title>
 </head>
-<p><?php echo $porukaTekst?></p>
 <body>
+<?php  if(isset($_SESSION['succesregister'])) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?php
+                echo $_SESSION['succesregister'];
+                unset($_SESSION['succesregister']);
+                ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <?php  endif;?>
+
 <div class="container margin_top">
     <h1 class="margine_bottom">Premier League Shop</h1>
     <div class="row gy-4">
@@ -45,6 +48,7 @@
                 foreach ($row as $value){
 
                     $id = $value["id"];
+                  
         ?>
         <div class="col-md-3 col-6">
             <a href="products.php?id=<?php echo $id; ?>">

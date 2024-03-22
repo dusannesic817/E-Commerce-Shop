@@ -2,19 +2,46 @@
 
 require_once "inc/header.php";
 require_once "app/classes/Product.php";
-    
+
+    if(isset($_GET['page'])){
+        $page=$_GET['page'];
+    }else{
+        $page=1;
+    }
+
+
 
     if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
 
         $id=$conn->real_escape_string($_GET["id"]);
+        $_SESSION['club_id']=$id;
+      
+        $limit=16;
 
         $products=new Product();
+      
 
-        $get=$products->fetch_all($id);
-
-        //var_dump($get);
+       $get=$products->fetch_all($id,$limit,$page);
+      
 
     }
+    $total=$products->count($id); 
+    $totalPages=ceil($total/$limit);
+
+    if($page>1){
+        $previous= $page -1;
+      }else{
+        $previous=$page;
+      }
+
+      if($page<$totalPages){
+        $next= $page+1;
+      }else{
+        $next=$totalPages;
+      }
+
+    
+  
     
     ?>
 
@@ -32,11 +59,15 @@ require_once "app/classes/Product.php";
     <title>PL Shop</title>
 </head>
 <body>
+    
     <div class="container margin_top">
+
         <h1 class="margine_bottom">Premier League Shop</h1>
 
         <div class="row gy-4">
             <?php 
+                if(!empty($get)){
+
                 foreach ($get as $value) { 
                 $id=$value["product_id"]
               ?>
@@ -57,9 +88,30 @@ require_once "app/classes/Product.php";
                         </div> 
                     </div>
                 </div>
-            <?php } ?>
+            <?php }
+            }else{
+                echo 'No items';
+            }
+            
+            ?>
         </div>
     </div>
+        <nav class='mt-4' aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li >
+                    <a class="page-link" href="products.php?id=<?php echo $_SESSION['club_id'] ?>&page=<?php echo $previous ?>">Previous</a>
+                </li>
+                <?php for($i = 1; $i <= $totalPages; $i++) { ?>
+                    <li class="page-item">
+                        <a class="page-link" href="products.php?id=<?php echo $_SESSION['club_id'] ?>&page=<?php echo $i ?>"><?php echo $i ?></a>
+                    </li>
+                <?php } ?>
+                <li class="page-item">
+                    <a class="page-link" href="products.php?id=<?php echo $_SESSION['club_id'] ?>&page=<?php echo $next?>">Next</a>
+                </li>
+            </ul>
+        </nav>
+
 </body>
 
 

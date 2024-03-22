@@ -5,7 +5,7 @@ class Product{
     protected $conn;
 
     public function __construct(){
-        global $conn;  // pristupamo onoj varijabli iz config jer je globalna nema neku funkciju
+        global $conn;  // pristupam onoj varijabli iz config jer je globalna nema neku funkciju
         $this->conn =$conn;
     }
 

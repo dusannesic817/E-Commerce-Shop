@@ -4,10 +4,16 @@ require_once "inc/header.php";
 require_once "app/classes/User.php";
 require_once "app/classes/Cart.php";
 require_once "app/classes/Order.php";
+require_once "app/classes/Notification.php";
+require_once "app/classes/Mailer.php";
+require_once "app/classes/Pdf.php";
 
 
     $user=new User();
-    $order=new Order();
+    $notification=new Notification();
+    $mailer=new Mailer();
+    $pdf=new Pdf();
+    $order=new Order($notification,$mailer,$pdf);
 
     $list=$order->list_order();
 

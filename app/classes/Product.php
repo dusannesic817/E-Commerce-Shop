@@ -52,7 +52,8 @@ class Product{
     }
 
 
-    public function search($search) {
+    public function search($search,$limit,$page) {
+        $start=($page-1)*$limit;
         $sql= "SELECT 
         `products`.`name` as name,
         `products`.`price` as price,

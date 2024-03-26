@@ -15,21 +15,51 @@ class Mailer{
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'dusannesic28@gmail.com';
-        $mail->Password   = '';
+        $mail->Username   = 'shopforyourself3@gmail.com';
+        $mail->Password   = 'nvpqhwbvufrgrhkv';
         $mail->SMTPSecure = 'ssl';
         $mail->Port       = 465;
         
        
-        $mail->setFrom('dusannesic28@gmail.com', "");
-        $mail->addReplyTo('dusannesic28@gmail.com', "");
+        $mail->setFrom('shopforyourself3@gmail.com', "Pl shop < reset your password >");
+        $mail->addReplyTo('shopforyourself3@gmail.com', "");
         $mail->isHTML(true);
         $mail->addAddress($email);
-        $mail->Subject = 'Report';
+        $mail->Subject = 'report';
         $mail->Body    = $htmlContent; 
        
    
         $mail->send();
         }
 
+
+        public function sendMailReportPdf($pdf,$email){
+            $mail = new PHPMailer(true);
+
+            // Postavke SMTP servera
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'shopforyourself3@gmail.com';
+            $mail->Password   = 'nvpqhwbvufrgrhkv'; 
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port       = 465;
+    
+            // Postavke e-pošte
+            $mail->setFrom('shopforyourself3@gmail.com', "Porudzbina");
+            $mail->addReplyTo('shopforyourself3@gmail.com', "");
+            $mail->isHTML(true);
+            $mail->addAddress($email);
+            $mail->Subject = 'Report';
+            $mail->Body    = 'Postovani vasa potvrda o porudzbini';
+    
+            // Dodajte PDF fajl kao prilog
+           
+            $mail->addAttachment($pdf);
+    
+            // Pošaljite e-poštu
+            $mail->send();
+        }
+
 }
+

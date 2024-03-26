@@ -4,8 +4,14 @@ require_once "inc/header.php";
 require_once "app/classes/Cart.php";
 require_once "app/classes/User.php";
 require_once "app/classes/Order.php";
+require_once "app/classes/Notification.php";
+require_once "app/classes/Mailer.php";
+require_once "app/classes/Pdf.php";
 
 $user=new User();
+$mailer=new Mailer();
+$notification=new Notification();
+$pdf=new Pdf();
 
 if(!$user->isLoged()){
     header("Location: login.php");
@@ -31,7 +37,7 @@ if(!$user->isLoged()){
     $number=$_POST["number"];
 
 
-    $order=new Order();
+    $order=new Order($notification,$mailer,$pdf);
 
     $orders= $order->create_order($first_name, $last_name, $email, $adress,$country,$number);
 

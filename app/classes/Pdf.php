@@ -6,7 +6,7 @@ class Pdf{
 
 
 
-    public function generatePdf_forOrder($order_id,$first_name,$last_name,$address,$state,$email,$artical,$price,$amount,$totalPrice,$filename){
+    public function generatePdf_forOrders($order_id,$first_name,$last_name,$address,$state,$email,$niz,$totalPrice,$filename){
         $pdf = new FPDF();
 
         // Dodajte prvu stranicu
@@ -31,20 +31,27 @@ class Pdf{
         $pdf->Cell(0,10,'Email: '.$email,0,1);
         
         // Ispisivanje slike
-        $pdf->Cell(0,10,'Name of artical: '.$artical,0,1);
+        
         //$pdf->Image('putanja/do/slike.jpg',10,$pdf->GetY(),30);
         $pdf->Ln(10);
+
+        foreach ($niz as $value){
+
         
         // Linija ispod cene
         $pdf->Cell(0,0,'','T',1,'C');
-        $pdf->Cell(0,10,'Price: '.$price,0,1);
-        $pdf->Cell(0,10,'Delivery price: $10',0,1);
-        $pdf->Cell(0,10,'Amount: '.$amount,0,1);
-        $pdf->Cell(0,10,'Total price: '.$totalPrice,0,1);
+        $pdf->Cell(0,10,'Name of artical: '.$value['name'],0,1);
+        $pdf->Cell(0,10,'Price: '.$value['price'] .'$',0,1);
+        $pdf->Cell(0,10,'Amount: '.$value['quantity'],0,1);
+        $pdf->Ln(10);
+}
+
+        $pdf->Ln(10);
+        $pdf->Cell(0,10,'Total price: '.$totalPrice .'$',0,1);
         
-        // Output
+    
                     
-       // $filename = "public/pdf_files" . $order_id . ".pdf";
+ 
         $pdf->Output('F', $filename);
           
     }

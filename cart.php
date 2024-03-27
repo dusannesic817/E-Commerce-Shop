@@ -15,6 +15,8 @@ if(!$user->isLoged()){
 
    $cart_items=$cart->get_cart_items();
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,9 +46,24 @@ if(!$user->isLoged()){
         </thead>
         <tbody>
         <?php
+        $niz=[];
         foreach($cart_items as $value){
            // var_dump($value);
             $id=$value["id"];
+            $price=$value["price"];
+            $quantity=$value["quantity"];
+           $name= $value["club_name"];
+
+         
+            $niz[] = [
+                "id" => $id,
+                "price" => $price,
+                "quantity" => $quantity,
+                'name'=>$name
+            ];
+           
+
+            
         ?>
             <tr>
                 <td class="pt-3"><?php echo $value['club_name']." - ". $value['name']?></td>
@@ -66,5 +83,8 @@ if(!$user->isLoged()){
 </body>
 </html>
 
-<?php 
+<?php
+foreach($niz as $item){
+    var_dump($item);
+}
 require_once "inc/footer.php";

@@ -9,7 +9,7 @@ class Order extends Cart{
     protected $pdf;
 
     public function __construct(Notification $notification, Mailer $mailer, Pdf $pdf){
-        global $conn;  // pristupamo onoj varijabli iz config jer je globalna nema neku funkciju
+        global $conn;  
         $this->conn =$conn;
         $this->notification=$notification;
         $this->mailer=$mailer;
@@ -63,11 +63,21 @@ class Order extends Cart{
       
       $list_order=$this->list_order();
       $totalPrice=0;
+      $array=[];
       foreach($list_order as $value){
 
        $article=$value['name'];
        $price=$value['price'];
        $amount=$value['quantity'];
+
+       $array[]=[
+          'name'=> $article,
+          'price' => $price,
+          'quantity'=> $amount
+
+       ];
+
+
        
        $total = $price * $amount;
        $totalPrice += $total;
@@ -84,7 +94,7 @@ class Order extends Cart{
         }
 
 
-        $this->pdf->generatePdf_forOrder($order_id,$first_name,$last_name,$adress,$country,$email,$article,$price,$amount,$totalPrice,$filename);
+        $this->pdf->generatePdf_forOrders($order_id,$first_name,$last_name,$adress,$country,$email,$array,$totalPrice,$filename);
         $this->mailer->sendMailReportPdf($filename,$email);
 
       }

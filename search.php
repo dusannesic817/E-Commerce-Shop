@@ -10,6 +10,8 @@ if(isset($_GET['page'])){
     $page=1;
 }
 
+
+
 if(isset($_GET['search']) && !empty($_GET['search'])){
 
     $limit=16;
@@ -22,20 +24,35 @@ if(isset($_GET['search']) && !empty($_GET['search'])){
         $array[] = "`products`.`name` LIKE '%$keyword%'";
     }
     
-    $search = implode(" AND ", $array);
+    $search_query  = implode(" AND ", $array);
+
+   
    
     $product=new Product();
-    $search=$product->search($search,$limit,$page);
+    $search=$product->search($search_query ,$limit,$page);
+   
 
-    var_dump($search);
+if (preg_match('/\'%([^%]+)%\'/', $search_query, $matches)) {
+    $string = $matches[1];
+   
+}
 
 
-      
 
+
+
+    //var_dump($search);
+    
+    $max=$product->countAll($search_query );
+
+    $max = $product->countAll($search_query);
+
+    foreach($max as $total){}
     }
 
-   // $total=$product->countAll(); 
-    $totalPages=ceil($total/$limit);
+
+    $totalPages = ceil($total/$limit);
+
 
     if($page>1){
         $previous= $page -1;
@@ -47,6 +64,7 @@ if(isset($_GET['search']) && !empty($_GET['search'])){
         $next= $page+1;
       }else{
         $next=$totalPages;
+        
       }
 
 
@@ -103,15 +121,15 @@ if(isset($_GET['search']) && !empty($_GET['search'])){
         <nav class='mt-4' aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li >
-                    <a class="page-link" href="search.php?page=<?php echo $previous ?>">Previous</a>
+                    <a class="page-link" href="search.php?search=<?php echo $string?>&page=<?php echo $previous ?>">Previous</a>
                 </li>
                 <?php for($i = 1; $i <= $totalPages; $i++) { ?>
                     <li class="page-item">
-                        <a class="page-link" href="search.php?page=<?php echo $i ?>"><?php echo $i ?></a>
+                        <a class="page-link" href="search.php?search=<?php echo $string?>&page=<?php echo $i ?>"> <?php echo $i?> </a>
                     </li>
                 <?php } ?>
                 <li class="page-item">
-                    <a class="page-link" href="search.php?page=<?php echo $next?>">Next</a>
+                    <a class="page-link" href="search.php?search=<?php echo $string?>&page=<?php echo $next ?>">Next</a>
                 </li>
             </ul>
         </nav>
@@ -123,3 +141,5 @@ if(isset($_GET['search']) && !empty($_GET['search'])){
 </html>
 <?php
 require_once "inc/footer.php";
+
+//http://localhost/e-commerc_Shop/products.php?id=11&page=2

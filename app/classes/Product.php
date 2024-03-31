@@ -65,7 +65,9 @@ class Product{
         `products`
     LEFT JOIN `clubs` ON `clubs`.`id` = `products`.`club_id`
     WHERE 
-        $search";
+        $search
+        LIMIT $start,$limit";   
+        
 
     
         $result = $this->conn->query($sql);
@@ -77,7 +79,23 @@ class Product{
         }
     }
     
-    
+    public function countAll($search){
+        $sql = "SELECT COUNT(products.id) AS product_count 
+        FROM 
+        `products`
+        LEFT JOIN `clubs` ON `clubs`.`id` = `products`.`club_id`
+        WHERE 
+        " . $search;
+
+        $run= $this->conn->query($sql);
+        $result=$run->fetch_assoc();
+
+        return $result;
+             
+
+      
+
+    }
     
     
 

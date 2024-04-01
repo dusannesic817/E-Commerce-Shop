@@ -39,15 +39,30 @@
 .margin_top{
     margin-top:  7rem;
 }
+.card{
+    border: 1px solid black;
+    position: relative;
+    overflow: hidden;
+}
 
-.shadow{
+
+.card-img-overlay{
+    position: absolute;
+    display: grid;
+    place-items: center;
+    
+    align-self: end;
+    
+}
+
+.text{
     position: absolute;
     text-align: center;
-    left: 50%;
-    top: 92%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 5px;
+    top: 25%;
+    font-size: 1rem;
+    align-self: end;
+    
+    
 }
 
 .footer{
@@ -100,4 +115,13 @@ a:hover{
   .border_u{
    
     border-bottom: 1px sold black;
+  }
+  .search_modify{
+    color: #340040;
+    border: 1px solid #340040;
+  }
+
+  .search_modify:hover{
+    color: white;
+    border: 1px solid white;
   }

@@ -45,7 +45,7 @@ if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
     <form class="d-flex" role="search" method='GET' action="search.php">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name='search'>
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <button class="btn search_modify" style="color:#340040;" type="submit">Search</button>
     </form>
       <ul class="navbar-nav">
      

@@ -50,13 +50,13 @@
                     $id = $value["id"];
                   
         ?>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3 col-6 picture_postion">
             <a href="products.php?id=<?php echo $id; ?>">
-                <div class="card" style="position: relative;">
+                <div class="card">
                     <img src="public/images/<?php echo $value["image"] ?>" class="card-img" alt="...">
                     <div class="card-img-overlay">
-                        <div class="card-title shadow">
-                            <h5><?php echo $value["name"]; ?></h5>
+                        <div class="card-title text">
+                            <p><?php echo $value["name"]; ?></p>
                         </div>
                     </div>
                 </div>

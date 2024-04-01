@@ -48,8 +48,6 @@ if (preg_match('/\'%([^%]+)%\'/', $search_query, $matches)) {
     $max = $product->countAll($search_query);
 
     foreach($max as $total){}
-    }
-
 
     $totalPages = ceil($total/$limit);
 
@@ -66,6 +64,14 @@ if (preg_match('/\'%([^%]+)%\'/', $search_query, $matches)) {
         $next=$totalPages;
         
       }
+
+    }else{
+        header("location: index.php");
+        exit();
+    }
+
+
+   
 
 
     ?>

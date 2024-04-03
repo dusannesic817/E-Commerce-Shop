@@ -61,5 +61,31 @@ class Mailer{
             $mail->send();
         }
 
+
+        public function confirmation_mail($email){
+            $htmlContent = file_get_contents('confirmation_text.php');
+            $mail = new PHPMailer(true);
+            
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'shopforyourself3@gmail.com';
+            $mail->Password   = 'nvpqhwbvufrgrhkv';
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port       = 465;
+            
+           
+            $mail->setFrom('shopforyourself3@gmail.com', "No replay");
+            $mail->addReplyTo('shopforyourself3@gmail.com', "");
+            $mail->isHTML(true);
+            $mail->addAddress($email);
+            $mail->Subject = 'report';
+            $mail->Body    = $htmlContent; 
+           
+       
+            $mail->send();
+
+        }
+
 }
 

@@ -66,7 +66,9 @@ $sql=" CREATE TABLE IF NOT EXISTS `users`(
 
 $sql='ALTER table users
 ADD reset_token VARCHAR(64) NULL DEFAULT NULL UNIQUE,
-ADD reset_token_exp DATETIME NULL DEFAULT NULL';
+ADD reset_token_exp DATETIME NULL DEFAULT NULL,
+ADD confirm_token VARCHAR(64) NULL DEFAULT NULL UNIQUE
+';
 
 
 $sql = " CREATE TABLE IF NOT EXISTS `categories`

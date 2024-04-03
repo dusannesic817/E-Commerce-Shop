@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../../vendor/autoload.php';
+//require_once 'vendor/autoload.php';
 
 
 class Notification{
@@ -14,6 +16,21 @@ class Notification{
 
 
     public function notification($path){
+
+        $options = array(
+            'cluster' => 'eu',
+            'useTLS' => true
+          );
+          $pusher = new Pusher\Pusher(
+            'c0953cb418b9d6eae4a3',
+            '36d3219900266ff86549',
+            '1781319',
+            $options
+          );
+        
+        
+
+
         $sql="INSERT INTO `notifications`(`pdf_path`)
         VALUES (?);
         
@@ -24,9 +41,32 @@ class Notification{
          $result=$stmt->execute();
 
          if($result){
+            $data['message'] = $path;
+            $pusher->trigger('my-channel', 'my-event', $data);
+
             return true;
+            
          }else{
             return false;
          }
+
+         
+    }
+
+
+
+    public function fetch_notification(){
+        $sql='SELECT * FROM notifications ORDER BY created_at DESC LIMIT 1';
+
+        $stmt=$this->conn->query($sql);
+
+        if ($stmt->num_rows > 0){
+
+            return $stmt->fetch_all(MYSQLI_ASSOC);
+    }
+
+        
+
+        
     }
 }

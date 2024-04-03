@@ -38,6 +38,21 @@ require_once "app/classes/Pdf.php";
     <title>PL Shop</title>
 </head>
 <body>
+<?php if(isset($_SESSION['success_order'])): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?php
+           
+                echo $_SESSION['success_order'];
+                unset($_SESSION['success_order']);
+           
+             
+            
+        ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php endif; ?>
+
+
     <?php
         if($list!=NULL){
 

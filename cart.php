@@ -84,7 +84,5 @@ if(!$user->isLoged()){
 </html>
 
 <?php
-foreach($niz as $item){
-    var_dump($item);
-}
+
 require_once "inc/footer.php";

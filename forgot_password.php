@@ -13,7 +13,6 @@ if($_SERVER["REQUEST_METHOD"]== "POST"){
     $token_hash=hash('sha256', $token);
 
 
-
 $exp_at= date("Y-m-d H:i:s", time()+60*30);
 
 $reset=$user->resetPassword($token_hash,$exp_at,$email);

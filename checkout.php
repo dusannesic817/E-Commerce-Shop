@@ -41,8 +41,11 @@ if(!$user->isLoged()){
 
     $orders= $order->create_order($first_name, $last_name, $email, $adress,$country,$number);
 
-      $_SESSION["message"]["type"]= "success"; 
-      $_SESSION["message"]["text"]= "Successful order"; 
+     /* $_SESSION["message"]["type"]= "success"; 
+      $_SESSION["message"]["text"]= "Successful order"; */
+
+
+      $_SESSION['success_order']='Congratiation successfull order';
       header("Location: my_orders.php");
       $empty=$order->empty_cart();
 

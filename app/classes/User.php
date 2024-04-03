@@ -1,5 +1,8 @@
 
 <?php
+
+//session_start();
+
 date_default_timezone_set('Europe/Belgrade');
 $_SESSION['bad_logins']=0;
     class User{
@@ -14,15 +17,28 @@ $_SESSION['bad_logins']=0;
 
 
         public function createUser($first_name, $last_name, $username, $email, $password, $number, $adress, $country_id) {
+            $token= bin2hex(random_bytes(16));
+            $token_hash=hash('sha256', $token);
+
             $hash = password_hash($password, PASSWORD_DEFAULT);
         
-            $sql = "INSERT INTO `users` (first_name, last_name, username, email, password, number, adress, coutry_id)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO `users` (first_name, last_name, username, email, password, number, adress, coutry_id,confirm_token)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
         
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("sssssssi", $first_name, $last_name, $username, $email, $hash, $number, $adress, $country_id);
+            $stmt->bind_param("sssssssis", $first_name, $last_name, $username, $email, $hash, $number, $adress, $country_id,$token_hash);
             
-            return $stmt->execute();
+            $result= $stmt->execute();
+
+
+            if($result){
+                $lastInsertedId = $this->conn->insert_id;
+                $_SESSION["last_insert_user_id"] = $lastInsertedId;
+                $_SESSION['confirm_token'] = $token_hash;
+                return true;
+            }else{
+                return false;
+            }
         
           /* if ($result) {
                 $lastInsertedId = $this->conn->insert_id;
@@ -34,36 +50,33 @@ $_SESSION['bad_logins']=0;
         }
         
         public function login($username, $password){
-
-            $sql="SELECT `id`, `password` FROM `users` WHERE `username`=?;
-            ";
-
-            $stmt= $this->conn->prepare($sql);
+            $sql = "SELECT `id`, `password`, `confirm_token` FROM `users` WHERE `username`=?";
+            $stmt = $this->conn->prepare($sql);
             $stmt->bind_param('s', $username);
             $stmt->execute();
-
-            $result= $stmt->get_result();
-
-            if($result->num_rows==1){
-
-                $row=$result->fetch_assoc();
-
-                if(password_verify($password,$row['password'])){
-                    $_SESSION['id']=$row['id'];
+        
+            $result = $stmt->get_result();
+        
+            if($result->num_rows == 1){
+                $row = $result->fetch_assoc();
+        
+              
+                if(password_verify($password, $row['password']) && $row['confirm_token'] === NULL){
+                    $_SESSION['id'] = $row['id'];
                     unset($_SESSION['bad_login']);
                     return true;
-                }else{
+                } else {
                     $_SESSION['bad_login']++;
-                    if($_SESSION['bad_login']>5){
-                        
+                    if($_SESSION['bad_login'] > 5){
                         header('location: reset_password.php');
                         exit();
                     }
                 }
             }
-
+        
             return false;
-    }
+        }
+        
 
 
 
@@ -160,6 +173,40 @@ $_SESSION['bad_logins']=0;
          return $stmt->execute();
     }
     
+    public function find_account_with_token($token){
+
+        $sql="SELECT id FROM users WHERE confirm_token=?";
+        $stmt=$this->conn->prepare($sql);
+        $stmt->bind_param('s',$token);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        if($result->num_rows>0){
+
+            return $result->fetch_assoc();
+        }else{
+            return false;
+        }
+
+
+    }
+
+    public function confirm_account($id){
+
+        $sql="UPDATE users SET confirm_token= NULL WHERE id=?";
+        $stmt=$this->conn->prepare($sql);
+        $stmt->bind_param('i',$id);
+        $result=$stmt->execute();
+
+        if($result){
+            return true;
+        }else{
+            echo "Error: " . $stmt->error;
+        }
+        
+
+    }
     
     
 

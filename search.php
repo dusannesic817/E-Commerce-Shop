@@ -4,6 +4,7 @@ require_once "inc/header.php";
 require_once "app/classes/Product.php";
 
 
+
 if(isset($_GET['page'])){
     $page=$_GET['page'];
 }else{
@@ -66,7 +67,7 @@ if (preg_match('/\'%([^%]+)%\'/', $search_query, $matches)) {
       }
 
     }else{
-        header("location: index.php");
+        header('Location: index.php');
         exit();
     }
 

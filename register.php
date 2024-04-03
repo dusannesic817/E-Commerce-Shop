@@ -5,6 +5,7 @@ require_once "app/config/config.php";
 require_once "app/classes/User.php";
 require_once "app/classes/Validation.php";
 require_once "validation.php";
+require_once "app/classes/Mailer.php";
 
 $usernameValidation='';
 $passwordValidation='';
@@ -29,6 +30,7 @@ $adress='';
         
         $validation=new Validation();
         $user=new User();
+        $mailer= new Mailer();
 
         $usernameValidation = $validation->validateUsername($username, $conn);
         $passwordValidation = $validation->validatePassword($password,$retype);
@@ -38,7 +40,8 @@ $adress='';
         $create = $user->createUser($first_name, $last_name, $username, $email, $password, $number, $adress, $country_id);
 
         if ($create) {
-            $_SESSION['succesregister'] = "Register successed, Welcome";
+            $mailer->confirmation_mail($email);
+            $_SESSION['succesregister'] = "Thank you for registration, we've sent confirmation on your mail address";
             header("Location: index.php");
             exit();
         } else {

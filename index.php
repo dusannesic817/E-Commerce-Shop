@@ -25,16 +25,21 @@
     <title>PL Shop</title>
 </head>
 <body>
-<?php  if(isset($_SESSION['succesregister'])) : ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <?php
+<?php if(isset($_SESSION['succesregister']) || isset($_SESSION['confirm_registration'])): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <?php
+            if(isset($_SESSION['succesregister'])) {
                 echo $_SESSION['succesregister'];
                 unset($_SESSION['succesregister']);
-                ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            } elseif(isset($_SESSION['confirm_registration'])) {
+                echo $_SESSION['confirm_registration'];
+                unset($_SESSION['confirm_registration']);
+            }
+        ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php endif; ?>
 
-            <?php  endif;?>
 
 <div class="container margin_top">
     <h1 class="margine_bottom">Premier League Shop</h1>

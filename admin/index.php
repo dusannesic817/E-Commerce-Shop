@@ -7,6 +7,11 @@ require_once "../app/classes/Product.php";
 
 $user=new User();
 
+if(!$user->isLoged() && !isset($_SESSION['admin_id'])){
+  header("Location: ../login.php");
+  exit();
+}
+
 if($user->isLoged() && $user->is_admin()){
         
     
@@ -44,7 +49,7 @@ $products=$product->fetch_all_products();
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="logout.php">Log out</a>
+          <a class="nav-link" href="logout_admin.php">Log out</a>
         </li>
       </ul>
     </div>

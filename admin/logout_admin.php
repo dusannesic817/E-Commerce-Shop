@@ -1,12 +1,13 @@
 <?php
-
     require_once "../app/config/config.php";
     require_once "../app/classes/user.php";
 
     $user= new User();
 
-    $user->logOut();
+    $user->log_out_admin();
 
-
-    header("Location: ../login.php");
-    exit();
+    if($user){
+        header("Location: ../login.php");
+        exit();
+    }
+  

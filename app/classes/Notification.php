@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+//require_once __DIR__ . '/../../vendor/autoload.php';
 //require_once 'vendor/autoload.php';
 
 
@@ -15,7 +15,7 @@ class Notification{
 
 
 
-    public function notification($path){
+   /* public function notification($path){
 
         $options = array(
             'cluster' => 'eu',
@@ -51,7 +51,7 @@ class Notification{
          }
 
          
-    }
+    }*/
 
 
 

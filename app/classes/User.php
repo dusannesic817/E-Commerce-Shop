@@ -94,6 +94,11 @@ $_SESSION['bad_logins']=0;
     }
 
 
+    public function log_out_admin(){
+        unset ($_SESSION['admin_id']);
+    }
+
+
 
     public function user_data(){
         $sql="SELECT 
@@ -125,6 +130,7 @@ $_SESSION['bad_logins']=0;
         $result=$stmt->get_result();
 
         if($result->num_rows>0){
+            $_SESSION['admin_id']=$_SESSION['id'];
             return true;
         }
         return false;

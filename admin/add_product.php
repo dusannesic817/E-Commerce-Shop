@@ -9,6 +9,12 @@ $user=new User();
 $product=new Product();
 
 
+
+if(!$user->isLoged() && !isset($_SESSION['admin_id'])){
+    header("Location: ../login.php");
+    exit();
+}
+
 if($user->isLoged() && $user->is_admin()){
    
     if($_SERVER["REQUEST_METHOD"]== "POST"){
@@ -63,7 +69,7 @@ if($user->isLoged() && $user->is_admin()){
                             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Log out</a>
+                            <a class="nav-link" href="logout_admin.php">Log out</a>
                         </li>
                        
                     </ul>

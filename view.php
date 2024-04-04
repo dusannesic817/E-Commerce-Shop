@@ -68,10 +68,7 @@ if($_SERVER["REQUEST_METHOD"]== "POST"  && isset($_GET["id"])){
                                             <td scope="row">Team:</td>
                                             <td><?php echo $name ?></td>
                                         </tr>
-                                        <tr>
-                                            <td scope="row">Season:</td>
-                                            <td>??</td>
-                                        </tr>
+                                       
                                         <tr>
                                             <td scope="row">Type:</td>
                                             <td><?php echo $type ?></td>

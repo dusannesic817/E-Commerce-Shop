@@ -31,15 +31,12 @@ if($user->isLoged() && $user->is_admin()){
 
     $create=$product->create_product($name,$description,$price,$image,$quantity,$club_id,$category_id);
 
-    header("Location: index.php");
+    header("Location: add_product.php");
 
     }
 
 
 }
-
-
-
 
 ?>
 <!DOCTYPE html>
@@ -56,27 +53,7 @@ if($user->isLoged() && $user->is_admin()){
     <title>Admin</title>
 </head>
 <body>
-    <div class="container mb-5">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand">Premier League Shop</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="logout_admin.php">Log out</a>
-                        </li>
-                       
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+   <?php include_once 'header.php'?>
     <div class="container mt-5">
         <form method="POST" action="">
             <div class="row mt-3">
@@ -187,6 +164,5 @@ if($user->isLoged() && $user->is_admin()){
     </div>
   </div>
 </div>
-
 </body>
 </html>

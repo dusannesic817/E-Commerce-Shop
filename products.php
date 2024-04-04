@@ -9,8 +9,6 @@ require_once "app/classes/Product.php";
         $page=1;
     }
 
-
-
     if($_SERVER["REQUEST_METHOD"]== "GET" && isset($_GET["id"])){
 
         $id=$conn->real_escape_string($_GET["id"]);
@@ -39,9 +37,6 @@ require_once "app/classes/Product.php";
       }else{
         $next=$totalPages;
       }
-
-    
-  
     
     ?>
 
@@ -58,64 +53,53 @@ require_once "app/classes/Product.php";
     <link rel="stylesheet" href="public/css/style.css">
     <title>PL Shop</title>
 </head>
-<body>
-    
+<body>   
     <div class="container margin_top">
-
         <h1 class="margine_bottom">Premier League Shop</h1>
-
         <div class="row gy-4">
-            <?php 
-                if(!empty($get)){
-
+            <?php if(!empty($get)) {
                 foreach ($get as $value) { 
-                $id=$value["product_id"]
-              ?>
-              
-                <div class="col-md-3 col-6">
-                    <div class="card mb-3 h-100" style="max-width: 550px;">
+                    $id = $value["product_id"];
+            ?>
+            <div class="col-md-3 col-6">
+                <a href="view.php?id=<?php echo $id?>" class="text-decoration-none text-dark">
+                    <div class="card mb-4 h-100" style="max-width: 550px;">
                         <img src="public/product_image/<?php echo $value["image"] ?>" class="img-fluid rounded-start" style="height: 300px;">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $value["name"] ?></h5>
-                           
-                           
-                            <p class="card-text">
+                        <div class="card-body d-flex flex-column">
+                            <div class="pb-4">
+                                <h5 class="card-title"><?php echo $value["name"] ?></h5>
+                            </div>
+                            <div class="mt-auto">
                                 <small class="text-muted">Price: <?php echo $value["price"] ?>$</small>
-                            </p>
-                            <div>
-                            <a href="view.php?id=<?php echo $id?>" class="btn btn-primary" >View product</a>
                             </div>
                         </div> 
                     </div>
-                </div>
+                </a>
+            </div>
             <?php }
-            }else{
-                echo 'No items';
-            }
-            
-            ?>
+        } else { ?>
+            <div class="col-12">
+                <p class="text-center">No items</p>
+            </div>
+            <?php } ?>
         </div>
     </div>
-        <nav class='mt-4' aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li >
-                    <a class="page-link" href="products.php?id=<?php echo $_SESSION['club_id'] ?>&page=<?php echo $previous ?>">Previous</a>
-                </li>
+    <nav class='mt-4' aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li >
+                <a class="page-link" href="products.php?id=<?php echo $_SESSION['club_id'] ?>&page=<?php echo $previous ?>">Previous</a>
+            </li>
                 <?php for($i = 1; $i <= $totalPages; $i++) { ?>
-                    <li class="page-item">
-                        <a class="page-link" href="products.php?id=<?php echo $_SESSION['club_id'] ?>&page=<?php echo $i ?>"><?php echo $i ?></a>
-                    </li>
+            <li class="page-item">
+                <a class="page-link" href="products.php?id=<?php echo $_SESSION['club_id'] ?>&page=<?php echo $i ?>"><?php echo $i ?></a>
+            </li>
                 <?php } ?>
-                <li class="page-item">
-                    <a class="page-link" href="products.php?id=<?php echo $_SESSION['club_id'] ?>&page=<?php echo $next?>">Next</a>
-                </li>
-            </ul>
-        </nav>
-
+            <li class="page-item">
+                <a class="page-link" href="products.php?id=<?php echo $_SESSION['club_id'] ?>&page=<?php echo $next?>">Next</a>
+            </li>
+        </ul>
+    </nav>
 </body>
-
-
-
 </html>
 <?php
 require_once "inc/footer.php";

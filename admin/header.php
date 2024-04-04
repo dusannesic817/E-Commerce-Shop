@@ -1,10 +1,7 @@
 <?php
-
-
 require_once "../app/config/config.php";
 require_once __DIR__ . '/../app/classes/Notification.php';
-//require_once 'fetch_notification.php';
-//require_once 'list_notification.php';
+
 
 ?>
 <!DOCTYPE html>
@@ -30,17 +27,7 @@ require_once __DIR__ . '/../app/classes/Notification.php';
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" >
                     <ul class="navbar-nav">
-                    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"> 
-                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                    <img src="..." class="rounded me-2" alt="...">
-                    <strong class="me-auto">Bootstrap</strong>
-                    <small class="text-body-secondary">11 mins ago</small>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                  </div>
-                  <div class="toast-body" id='order'>
                     
-                  </div>
-                </div>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                         </li>
@@ -58,19 +45,21 @@ require_once __DIR__ . '/../app/classes/Notification.php';
                 </div>
             </div>
         </nav>
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"> 
+                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <img src="..." class="rounded me-2" alt="...">
+                    <strong class="me-auto">You have new order</strong>
+                    <small class="text-body-secondary">now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                  <div class="toast-body" id='order'>
+                    
+                  </div>
+                </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 <script>
-/*const toastTrigger = document.getElementById('liveToastBtn')
-const toastLiveExample = document.getElementById('liveToast')*/
-/*
-if (toastTrigger) {
-  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-  toastTrigger.addEventListener('click', () => {
-    toastBootstrap.show()
-  })
-}*/
 Pusher.logToConsole = true;
 var pusher = new Pusher('51d06573da9c580bef35', {
   cluster: 'eu'
@@ -78,8 +67,7 @@ var pusher = new Pusher('51d06573da9c580bef35', {
 
 var channel = pusher.subscribe('my-channel');
 channel.bind('my-event', function(data) {
-  //lert(JSON.stringify(data));
-  $.ajax({url: "feth_notification.php", success: function(result){
+  $.ajax({url: "fetch_notification.php", success: function(result){
     $("#order").html(result); 
   }});
   

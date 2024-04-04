@@ -1,6 +1,6 @@
 <?php
 
-//require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 //require_once 'vendor/autoload.php';
 
 
@@ -15,19 +15,18 @@ class Notification{
 
 
 
-   /* public function notification($path){
+    public function notification($path){
 
-        $options = array(
-            'cluster' => 'eu',
-            'useTLS' => true
-          );
-          $pusher = new Pusher\Pusher(
-            'c0953cb418b9d6eae4a3',
-            '36d3219900266ff86549',
-            '1781319',
-            $options
-          );
-        
+      $options = array(
+        'cluster' => 'eu',
+        'useTLS' => true
+      );
+      $pusher = new Pusher\Pusher(
+        '51d06573da9c580bef35',
+        'bd58908619d274fdc833',
+        '1782445',
+        $options
+      );
         
 
 
@@ -51,7 +50,7 @@ class Notification{
          }
 
          
-    }*/
+    }
 
 
 
@@ -64,9 +63,17 @@ class Notification{
 
             return $stmt->fetch_all(MYSQLI_ASSOC);
     }
+    }
 
-        
 
-        
+    public function fetch_all_notification(){
+      $sql='SELECT * FROM notifications ORDER BY created_at DESC';
+
+      $stmt=$this->conn->query($sql);
+
+        if ($stmt->num_rows > 0){
+
+            return $stmt->fetch_all(MYSQLI_ASSOC);
+    }
     }
 }

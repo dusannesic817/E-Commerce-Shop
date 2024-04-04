@@ -35,10 +35,10 @@ if($user->isLoged() && $user->is_admin()){
 
     }
 
-
 }
 
 ?>
+  <?php include_once 'header.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +53,7 @@ if($user->isLoged() && $user->is_admin()){
     <title>Admin</title>
 </head>
 <body>
-   <?php include_once 'header.php'?>
+ 
     <div class="container mt-5">
         <form method="POST" action="">
             <div class="row mt-3">

@@ -23,9 +23,7 @@
             <div class="row">
                 <div class="col-md-4 mt-5">
                     <h5>Contact Us</h5>
-                    <h6>Email: </h6>
-                    <p>dusannesic28@gmail.com</p>
-                    <p>filipnikolic96vr@gmail.com</p>
+                    <p>shopforyourself3@gmail.com</p>
                 </div>
                 <div class="col-md-4 mt-5">
                     <h5>Quick Links</h5>
@@ -48,7 +46,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-12 text-center">
-                    <p>&copy; <?php echo date("Y"); ?> Premier League Shop. All rights reserved to Dusan and Filip.</p>
+                    <p>&copy; <?php echo date("Y"); ?> Premier League Shop. All rights reserved to Premier League Shop.</p>
                 </div>
             </div>
             

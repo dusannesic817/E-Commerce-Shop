@@ -22,6 +22,8 @@ $products=$product->fetch_all_products();
 
 ?>
 
+
+<?php include_once 'header.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +38,6 @@ $products=$product->fetch_all_products();
 
 </head>
 <body>
-<?php include_once 'header.php'?>
 <div class="container mt-5">
    
 <table class="table table-striped">

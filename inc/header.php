@@ -43,6 +43,7 @@ if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
       <span class="navbar-toggler-icon navbar-text"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
     <form class="d-flex" role="search" method='GET' action="search.php">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name='search'>
       <button class="btn search_modify" style="color:#340040;" type="submit">Search</button>
@@ -52,8 +53,6 @@ if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
       
         <?php
           if(!$user->isLoged()){
-
-          
         ?>
         <li class="nav-item">
           <a class="nav-link navbar-text" href="login.php"><i class="bi bi-person-fill margin_cart"></i> Login</a>
@@ -62,9 +61,9 @@ if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
           <a class="nav-link navbar-text " href="register.php"><i class="bi bi-person-fill-gear margin_cart"></i> Register</a>
         </li>
         <?php
-          }else{
+          }elseif(!$user->is_admin() && $user->isLoged()){
         ?>
-          <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link navbar-text" aria-current="page" href="cart.php"><i class="bi bi-basket3-fill margin_cart"></i>Cart</a>
         </li>
         <li class="nav-item">
@@ -74,8 +73,15 @@ if (isset($_SESSION["message"]) && isset($_SESSION["message"]["type"])){
           <a class="nav-link navbar-text " href="logout.php"><i class="bi bi-person-fill-gear margin_cart"></i> Log Out</a>
         </li>
           <?php
-          }
+          }elseif($user->is_admin() && $user->isLoged()){
           ?>
+          <li class="nav-item">
+          <a class="nav-link navbar-text" aria-current="page" href="admin/add_product.php"><i class="bi bi-bag-fill margin_cart"></i>Admin Dasbord</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link navbar-text " href="logout.php"><i class="bi bi-person-fill-gear margin_cart"></i> Log Out</a>
+        </li>
+          <?php }?>
       </ul>
     </div>
   </div>

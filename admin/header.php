@@ -1,5 +1,11 @@
 <?php
 
+
+require_once "../app/config/config.php";
+require_once __DIR__ . '/../app/classes/Notification.php';
+//require_once 'fetch_notification.php';
+//require_once 'list_notification.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,29 +24,28 @@
 <div class="container mb-5">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand">Premier League Shop</a>
+                <a class="navbar-brand" href='../index.php'>Premier League Shop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end">
+                <div class="collapse navbar-collapse justify-content-end" >
                     <ul class="navbar-nav">
-                    <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-
-                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="toast-header">
-                            <img src="..." class="rounded me-2" alt="...">
-                            <strong class="me-auto">Bootstrap</strong>
-                            <small>11 mins ago</small>
-                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                            <div class="toast-body">
-                            Hello, world! This is a toast message.
-                            </div>
-                        </div>
-                        </div>
+                    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"> 
+                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <img src="..." class="rounded me-2" alt="...">
+                    <strong class="me-auto">Bootstrap</strong>
+                    <small class="text-body-secondary">11 mins ago</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                  <div class="toast-body" id='order'>
+                    
+                  </div>
+                </div>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="list_notification.php">See orders</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="add_product.php">Add product</a>
@@ -54,17 +59,40 @@
             </div>
         </nav>
     </div>
-
-    <script>
-const toastTrigger = document.getElementById('liveToastBtn')
-const toastLiveExample = document.getElementById('liveToast')
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script>
+/*const toastTrigger = document.getElementById('liveToastBtn')
+const toastLiveExample = document.getElementById('liveToast')*/
+/*
 if (toastTrigger) {
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
   toastTrigger.addEventListener('click', () => {
     toastBootstrap.show()
   })
+}*/
+Pusher.logToConsole = true;
+var pusher = new Pusher('51d06573da9c580bef35', {
+  cluster: 'eu'
+});
+
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function(data) {
+  //lert(JSON.stringify(data));
+  $.ajax({url: "feth_notification.php", success: function(result){
+    $("#order").html(result); 
+  }});
+  
+if (window.location.pathname === '/list_notification.php') {
+  $.ajax({
+    url: "list_notification.php",
+    success: function(result) {
+      $("#list").html(result); 
+    }
+  });
 }
+
+});
 </script>
 </body>
 </html>
